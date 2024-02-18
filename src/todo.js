@@ -1,3 +1,5 @@
+import { format } from 'date-fns';
+
 export default class Todo {
   constructor(
     title,
@@ -29,7 +31,7 @@ export default class Todo {
     return `Todo info:
 - Title: ${this.title}
 - Description: ${this.description}
-- Due Date: ${this.dueDate}
+- Due Date: ${format(this.dueDate, 'yyyy-MM-dd')}
 - Priority: ${this.priority}
 - Complete: ${this.complete ? 'Yes' : 'No'}`;
   }

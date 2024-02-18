@@ -1,3 +1,11 @@
-.description {
+.past-due {
   color: red;
+}
+
+.future-due {
+  color: green;
+}
+
+.due-today {
+  color: blue;
 }

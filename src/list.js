@@ -1,6 +1,6 @@
 export default class List {
-  constructor(name, todos = []) {
-    this.name = name;
+  constructor(title, todos = []) {
+    this.title = title;
     this.todos = todos;
   }
 
@@ -13,6 +13,6 @@ export default class List {
     for (const todo of this.todos) {
       todoList += `\n- ${todo.title}`;
     }
-    return `${this.name} todos: ${todoList}`;
+    return `${this.title} todos: ${todoList}`;
   }
 }
