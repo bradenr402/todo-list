@@ -4,8 +4,10 @@ export default class List {
     this.todos = todos;
   }
 
-  addTask(task) {
-    this.todos.push(task);
+  addTasks(...tasks) {
+    for (const task of tasks) {
+      this.todos.push(task);
+    }
   }
 
   getTodos() {
