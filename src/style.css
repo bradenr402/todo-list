@@ -43,3 +43,10 @@ main {
 .sub-title {
   color: green;
 }
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}

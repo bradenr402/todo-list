@@ -6,7 +6,113 @@
     <title>Todo List</title>
   <script defer src="main.js"></script></head>
   <body>
-    <!-- Add navigation (refer to Project: Restaurant Page) -->
-    <h1>Todo!</h1>
+    <!-- navigation (refer to Project: Restaurant Page) -->
+    <main>
+      <aside class="sidebar">
+        <div class="logo">
+          <h1 class="title">To<span class="sub-title">do!</span></h1>
+        </div>
+
+        <nav class="side-links">
+          <!-- list titles generated here -->
+        </nav>
+
+        <button class="new-todo-btn">+</button>
+      </aside>
+
+      <div class="content">
+        <h1 class="page-title"></h1>
+        <div class="todo-wrapper"></div>
+      </div>
+
+      <!-- Modals -->
+      <!--  New todo modal -->
+      <dialog class="modal new-todo">
+        <div class="modal-header">
+          <p>New Todo</p>
+          <button class="close-modal-btn">&times;</button>
+        </div>
+
+        <form method="dialog" class="todo-form">
+          <div class="input-group">
+            <label for="title">Title</label>
+            <input type="text" name="title" autocomplete="off" required />
+          </div>
+
+          <div class="input-group">
+            <label for="date">Due Date</label>
+            <input type="date" name="date" autocomplete="off" required />
+          </div>
+
+          <div class="lists-group">
+            <label for="list">Select List</label>
+            <select name="list-select">
+              <!-- project titles generated here -->
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label for="new-list">...or create a new list:</label>
+            <input type="text" name="new-list" />
+          </div>
+
+          <div class="input-group">
+            <label for="description">Description</label>
+            <textarea
+              name="description"
+              cols="30"
+              rows="10"
+              required
+            ></textarea>
+          </div>
+
+          <input type="submit" value="Create" />
+        </form>
+      </dialog>
+
+      <!--  Edit todo modal -->
+      <dialog class="modal edit-todo">
+        <div class="modal-header">
+          <p>Edit todo</p>
+          <button class="close-modal-btn">&times;</button>
+        </div>
+
+        <form method="dialog" class="todo-form">
+          <div class="input-group">
+            <label for="title">Title</label>
+            <input type="text" name="title" autocomplete="off" required />
+          </div>
+
+          <div class="input-group">
+            <label for="date">Due Date</label>
+            <input type="date" name="date" autocomplete="off" required />
+          </div>
+
+          <div class="lists-group">
+            <label for="list">Select List</label>
+            <select name="list-select">
+              <!-- project titles generated here -->
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label for="new-list">...or create a new list:</label>
+            <input type="text" name="new-list" />
+          </div>
+
+          <div class="input-group">
+            <label for="description">Description</label>
+            <textarea
+              name="description"
+              cols="30"
+              rows="10"
+              required
+            ></textarea>
+          </div>
+
+          <input type="submit" value="Edit" />
+        </form>
+      </dialog>
+    </main>
   </body>
 </html>

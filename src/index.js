@@ -2,6 +2,7 @@ import './style.css';
 import Todo from './todo';
 import List from './list';
 import { format, isBefore, isToday, isAfter } from 'date-fns';
+import './modals';
 
 const pastTodo = new Todo(
   'Past todo',
