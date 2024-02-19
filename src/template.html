@@ -6,6 +6,72 @@
     <title>Todo List</title>
   </head>
   <body>
-    <h1>Todo List</h1>
+    <!-- navigation (refer to Project: Restaurant Page) -->
+    <main>
+      <aside class="sidebar">
+        <div class="logo">
+          <h1 class="title">To<span class="sub-title">do!</span></h1>
+        </div>
+        <nav class="side-links">
+          <!-- list titles generated here -->
+        </nav>
+        <button class="new-todo-button">+</button>
+      </aside>
+      <div class="content">
+        <h1 class="page-title"></h1>
+        <div class="todo-wrapper"></div>
+      </div>
+      <!-- modals -->
+      <div class="modal new-todo">
+        <p>New Todo</p>
+        <span id="close-form">&times;</span>
+        <form class="todo-form">
+          <label for="title">Title</label>
+          <input type="text" name="title" autocomplete="off" required />
+          <label for="date">Due Date</label>
+          <input type="date" name="date" autocomplete="off" required />
+
+          <div class="lists-group">
+            <label for="list">Select List</label>
+            <select name="list-select">
+              <!-- project titles generated here -->
+            </select>
+          </div>
+
+          <label for="new-list">...or create a new list:</label>
+          <input type="text" name="new-list" />
+
+          <label for="description">Description</label>
+          <textarea name="description" cols="30" rows="10" required></textarea>
+          <input type="submit" value="Create" />
+        </form>
+      </div>
+
+      <div class="modal-edit-todo">
+        <p>Edit task</p>
+        <span id="close-form">
+          <form class="todo-form">
+          <label for="title">Title</label>
+          <input type="text" name="title" autocomplete="off" required />
+          <label for="date">Due Date</label>
+          <input type="date" name="date" autocomplete="off" required />
+
+          <div class="lists-group">
+            <label for="list">Select List</label>
+            <select name="list-select">
+              <!-- project titles generated here -->
+            </select>
+          </div>
+
+          <label for="new-list">...or create a new list:</label>
+          <input type="text" name="new-list" />
+
+          <label for="description">Description</label>
+          <textarea name="description" cols="30" rows="10" required></textarea>
+          <input type="submit" value="Edit" />
+          </form>
+        </span>
+      </div>
+    </main>
   </body>
 </html>

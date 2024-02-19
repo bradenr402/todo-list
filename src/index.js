@@ -29,7 +29,16 @@ todoList.addTask(pastTodo);
 
 const allLists = [inboxList, todoList];
 
-const article = document.createElement('article');
+const sideBarContainer = document.querySelector('.side-links');
+for (const list of allLists) {
+  const li = document.createElement('li');
+  const span = document.createElement('span');
+  span.textContent = list.title;
+  li.appendChild(span);
+  sideBarContainer.appendChild(li);
+}
+
+const content = document.querySelector('.content');
 for (const list of allLists) {
   const details = document.createElement('details');
   const summary = document.createElement('summary');
@@ -75,15 +84,16 @@ for (const list of allLists) {
     todoPriority.textContent = `- Priority: ${todo.priority}`;
     todoItem.appendChild(todoPriority);
 
-    const todoComplete = document.createElement('p');
-    todoComplete.textContent = `- Complete: ${todo.complete ? 'Yes' : 'No'}`;
-    todoItem.appendChild(todoComplete);
+    const todoCompleted = document.createElement('p');
+    todoCompleted.textContent = `- Completed: ${todo.completed ? 'Yes' : 'No'}`;
+    todoItem.appendChild(todoCompleted);
 
     ul.appendChild(todoItem);
   }
 
   details.appendChild(ul);
-  article.appendChild(details);
+  content.appendChild(details);
 }
 
-document.body.appendChild(article);
+const main = document.querySelector('body main');
+main.appendChild(content);

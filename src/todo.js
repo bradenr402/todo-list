@@ -6,25 +6,25 @@ export default class Todo {
     description,
     dueDate = new Date(),
     priority = null,
-    complete = false
+    completed = false
   ) {
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;
     this.priority = priority;
-    this.complete = complete;
+    this.completed = completed;
   }
 
-  markComplete() {
-    this.complete = true;
+  markCompleted() {
+    this.completed = true;
   }
 
-  markUncomplete() {
-    this.complete = false;
+  markUncompleted() {
+    this.completed = false;
   }
 
-  toggleComplete() {
-    this.complete = !this.complete;
+  toggleCompleted() {
+    this.completed = !this.completed;
   }
 
   getInfo() {
@@ -33,6 +33,6 @@ export default class Todo {
 - Description: ${this.description}
 - Due Date: ${format(this.dueDate, 'yyyy-MM-dd')}
 - Priority: ${this.priority}
-- Complete: ${this.complete ? 'Yes' : 'No'}`;
+- Completed: ${this.completed ? 'Yes' : 'No'}`;
   }
 }

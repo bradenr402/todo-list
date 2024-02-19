@@ -9,3 +9,37 @@
 .due-today {
   color: blue;
 }
+
+.text-bold {
+  font-weight: bold;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.list-title {
+  display: inline;
+}
+
+details:not(:first-child) {
+  margin-top: 2rem;
+}
+
+details summary {
+  cursor: pointer;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+
+.title {
+  font-size: 2rem;
+}
+
+.sub-title {
+  color: green;
+}
