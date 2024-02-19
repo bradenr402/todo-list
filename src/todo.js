@@ -28,8 +28,7 @@ export default class Todo {
   }
 
   getInfo() {
-    return `Todo info:
-- Title: ${this.title}
+    return `${this.title}:
 - Description: ${this.description}
 - Due Date: ${format(this.dueDate, 'yyyy-MM-dd')}
 - Priority: ${this.priority}
