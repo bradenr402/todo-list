@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 
-export default class Todo {
+class Todo {
   constructor({ title, dueDate = new Date(), list = 'Inbox', description }) {
     this.title = title;
     this.dueDate = dueDate;
@@ -28,3 +28,20 @@ export default class Todo {
 - Completed: ${this.completed ? 'Yes' : 'No'}`;
   }
 }
+
+function addTodo(list, todo) {
+  if (list[todo.list]) {
+    list[todo.list].push(todo);
+  } else {
+    list[todo.list] = [];
+    list[todo.list].push(todo);
+  }
+}
+
+function addTodos(list, ...todos) {
+  todos.forEach((todo) => {
+    addTodo(list, todo);
+  });
+}
+
+export { Todo, addTodos };

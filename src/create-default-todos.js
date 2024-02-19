@@ -1,4 +1,4 @@
-import Todo from './todo';
+import { Todo, addTodos } from './todo';
 
 export default function createDefaultTodos() {
   const pastTodo = new Todo({
@@ -36,5 +36,8 @@ export default function createDefaultTodos() {
     description: 'This is my future todo description',
   });
 
-  return [pastTodo, pastTodo2, todayTodo, todayTodo2, futureTodo, futureTodo2];
+  const listOfLists = {};
+  addTodos(listOfLists, pastTodo, pastTodo2, todayTodo, todayTodo2, futureTodo, futureTodo2);
+
+  return {listOfLists, todos: [pastTodo, pastTodo2, todayTodo, todayTodo2, futureTodo, futureTodo2]};
 }

@@ -1,14 +1,13 @@
 import { format, isBefore, isToday, isAfter } from 'date-fns';
 import { updateFormSelectOptions } from './update-page';
+import listOfLists from './index';
 
 function setupPage(allTodos) {
-  const allLists = [];
-  allTodos.forEach((todo) => {
-    if (!allLists.includes(todo.list)) allLists.push(todo.list);
-  });
+  const allLists = Object.keys(listOfLists);
 
   const sidebarContainer = document.querySelector('.side-links');
 
+  const content = document.querySelector('.content');
   for (const list of allLists) {
     const li = document.createElement('li');
     const h3 = document.createElement('h3');
@@ -16,10 +15,7 @@ function setupPage(allTodos) {
     h3.classList.add('list-title');
     li.appendChild(h3);
     sidebarContainer.appendChild(li);
-  }
-
-  const content = document.querySelector('.content');
-  for (const list of allLists) {
+  
     addListDropdown(list, allTodos, content);
   }
 

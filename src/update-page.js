@@ -1,11 +1,14 @@
 import { addListDropdown, addItemToDropdown } from './setup-page';
 
 function updatePage(newTodo) {
-  const allLists = [];
-  updateSideLinks(newTodo, allLists);
-
   const content = document.querySelector('.content');
-  if (!allLists.includes(newTodo.list)) {
+  const sideLinks = Array.from(document.querySelectorAll('.side-links li h3'));
+
+  const sideLinksText = sideLinks.map((link) => {
+    return link.textContent;
+  });
+
+  if (!sideLinksText.includes(newTodo.list)) {
     addListDropdown(newTodo.list, [newTodo], content);
   } else {
     const ul = document.querySelector(`ul.${newTodo.list.split(' ').join('')}`);
@@ -14,15 +17,18 @@ function updatePage(newTodo) {
 
   const main = document.querySelector('body main');
   main.appendChild(content);
+
+  updateSideLinks(newTodo);
 }
 
-function updateSideLinks(newTodo, allLists) {
-  const sideLinks = document.querySelectorAll('.side-links li h3');
-  sideLinks.forEach((link) => {
-    if (!allLists.includes(link.textContent)) allLists.push(link.textContent);
+function updateSideLinks(newTodo) {
+  const sideLinks = Array.from(document.querySelectorAll('.side-links li h3'));
+
+  const sideLinksText = sideLinks.map((link) => {
+    return link.textContent;
   });
 
-  if (!allLists.includes(newTodo.list)) {
+  if (!sideLinksText.includes(newTodo.list)) {
     const sidebarContainer = document.querySelector('.side-links');
 
     const li = document.createElement('li');

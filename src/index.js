@@ -4,4 +4,7 @@ import './forms';
 import createDefaultTodos from './create-default-todos';
 import { setupPage } from './setup-page';
 
-setupPage(createDefaultTodos());
+const { listOfLists, todos } = createDefaultTodos();
+export default listOfLists;
+
+setupPage(todos);

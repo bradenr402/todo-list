@@ -1,5 +1,6 @@
-import Todo from './todo';
+import { Todo, addTodos } from './todo';
 import { updateFormSelectOptions, updatePage } from './update-page';
+import listOfLists from './index';
 
 const newDialog = document.querySelector('.modal.new-todo');
 const newTodoForm = document.querySelector('.new-todo-form');
@@ -17,6 +18,7 @@ newTodoForm.addEventListener('submit', (event) => {
   let list = listValue || newListValue || 'Inbox';
 
   const newTodo = new Todo({ title, dueDate, list, description });
+  addTodos(listOfLists, newTodo);
 
   updatePage(newTodo);
   updateFormSelectOptions(newTodo);
