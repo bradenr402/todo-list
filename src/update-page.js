@@ -1,12 +1,11 @@
 import { addListDropdown, addItemToDropdown } from './setup-page';
 
-export default function updatePage(newTodo) {
-  console.log('within updatePage(): ', newTodo);
+function updatePage(newTodo) {
   const allLists = [];
 
   const sideLinks = document.querySelectorAll('.side-links li h3');
   sideLinks.forEach((link) => {
-    if (!allLists.includes(link.textContent)) allLists.push(link.textContent);
+    if (!allLists.includes(link.textContent) && link.textContent !== '') allLists.push(link.textContent);
   });
 
   if (!allLists.includes(newTodo.list)) {
@@ -31,3 +30,26 @@ export default function updatePage(newTodo) {
   const main = document.querySelector('body main');
   main.appendChild(content);
 }
+
+function updateFormSelectOptions(newTodo) {
+  const newTodoForm = document.querySelector('.new-todo-form');
+  const editTodoForm = document.querySelector('.edit-todo-form');
+  const forms = [newTodoForm, editTodoForm];
+
+  forms.forEach((form) => {
+    const select = form.querySelector('.list-select');
+    const selectOptions = Array.from(
+      document.querySelectorAll('.list-select option')
+    );
+    const prevLists = selectOptions.map((opt) => opt.textContent);
+
+    if (!prevLists.includes(newTodo.list)) {
+      const option = document.createElement('option');
+      option.value = newTodo.list;
+      option.textContent = newTodo.list;
+      select.appendChild(option);
+    }
+  });
+}
+
+export { updateFormSelectOptions, updatePage };

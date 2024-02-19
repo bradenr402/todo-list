@@ -1,4 +1,5 @@
 import { format, isBefore, isToday, isAfter } from 'date-fns';
+import { updateFormSelectOptions } from './update-page';
 
 function setupPage(allTodos) {
   const allLists = [];
@@ -24,6 +25,10 @@ function setupPage(allTodos) {
 
   const main = document.querySelector('body main');
   main.appendChild(content);
+
+  allTodos.forEach((todo) => {
+    updateFormSelectOptions(todo);
+  });
 }
 
 function addListDropdown(list, allTodos, content) {

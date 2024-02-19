@@ -1,18 +1,12 @@
 import { format } from 'date-fns';
 
 export default class Todo {
-  constructor({
-    title,
-    dueDate = new Date(),
-    list = 'Inbox',
-    description,
-    completed = false,
-  }) {
+  constructor({ title, dueDate = new Date(), list = 'Inbox', description }) {
     this.title = title;
     this.dueDate = dueDate;
     this.list = list;
     this.description = description;
-    this.completed = completed;
+    this.completed = false;
   }
 
   markCompleted() {
