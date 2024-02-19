@@ -17,8 +17,6 @@ newTodoButton.addEventListener('click', () => {
 closeModalButtons.forEach((btn) => {
   btn.addEventListener('click', () => {
     const modal = btn.parentElement.parentElement;
-    console.log(modal);
-    console.log(modal.tagName);
     if (modal.tagName === 'DIALOG') modal.close();
   });
 });
