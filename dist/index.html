@@ -33,33 +33,47 @@
           <button class="close-modal-btn">&times;</button>
         </div>
 
-        <form method="dialog" class="todo-form">
+        <form method="dialog" class="todo-form new-todo-form">
           <div class="input-group">
             <label for="title">Title</label>
-            <input type="text" name="title" autocomplete="off" required />
+            <input
+              type="text"
+              name="title"
+              id="title"
+              autocomplete="off"
+              required
+              autofocus
+            />
           </div>
 
           <div class="input-group">
             <label for="date">Due Date</label>
-            <input type="date" name="date" autocomplete="off" required />
+            <input
+              type="date"
+              name="date"
+              id="dueDate"
+              autocomplete="off"
+              required
+            />
           </div>
 
           <div class="lists-group">
             <label for="list">Select List</label>
-            <select name="list-select">
+            <select name="list-select" id="list">
               <!-- project titles generated here -->
             </select>
           </div>
 
           <div class="input-group">
             <label for="new-list">...or create a new list:</label>
-            <input type="text" name="new-list" />
+            <input type="text" name="new-list" id="newList" />
           </div>
 
           <div class="input-group">
             <label for="description">Description</label>
             <textarea
               name="description"
+              id="description"
               cols="30"
               rows="10"
               required
@@ -77,10 +91,16 @@
           <button class="close-modal-btn">&times;</button>
         </div>
 
-        <form method="dialog" class="todo-form">
+        <form method="dialog" class="todo-form edit-todo-form">
           <div class="input-group">
             <label for="title">Title</label>
-            <input type="text" name="title" autocomplete="off" required />
+            <input
+              type="text"
+              name="title"
+              autocomplete="off"
+              required
+              autofocus
+            />
           </div>
 
           <div class="input-group">

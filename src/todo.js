@@ -1,17 +1,17 @@
 import { format } from 'date-fns';
 
 export default class Todo {
-  constructor(
+  constructor({
     title,
-    description,
     dueDate = new Date(),
-    priority = null,
-    completed = false
-  ) {
+    list = 'Inbox',
+    description,
+    completed = false,
+  }) {
     this.title = title;
-    this.description = description;
     this.dueDate = dueDate;
-    this.priority = priority;
+    this.list = list;
+    this.description = description;
     this.completed = completed;
   }
 
@@ -31,7 +31,6 @@ export default class Todo {
     return `${this.title}:
 - Description: ${this.description}
 - Due Date: ${format(this.dueDate, 'yyyy-MM-dd')}
-- Priority: ${this.priority}
 - Completed: ${this.completed ? 'Yes' : 'No'}`;
   }
 }

@@ -23,6 +23,10 @@
   display: inline;
 }
 
+li:has(.list-title):not(:first-child) {
+  margin-top: 2rem;
+}
+
 details:not(:first-child) {
   margin-top: 2rem;
 }
