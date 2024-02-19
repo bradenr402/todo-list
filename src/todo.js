@@ -5,7 +5,7 @@ export default class Todo {
     title,
     description,
     dueDate = new Date(),
-    priority = 1,
+    priority = null,
     complete = false
   ) {
     this.title = title;
