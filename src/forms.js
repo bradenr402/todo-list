@@ -21,7 +21,6 @@ newTodoForm.addEventListener('submit', (event) => {
   addTodos(listOfLists, newTodo);
 
   updatePage(newTodo);
-  updateFormSelectOptions(newTodo);
 
   newTodoForm.reset(); // clears form
   newDialog.close(); // closes modal

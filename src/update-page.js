@@ -18,6 +18,7 @@ function updatePage(newTodo) {
     addNewTodo(newTodo, ul, newTodo.list);
   }
 
+  updateFormSelectOptions(newTodo.list);
   updateTabEventListeners();
   updateTodoEventListeners();
 }
