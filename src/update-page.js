@@ -1,7 +1,6 @@
 import { format, isBefore, isToday, isAfter } from 'date-fns';
 
 function updatePage(newTodo) {
-  const content = document.querySelector('.content');
   const sideLinks = Array.from(document.querySelectorAll('.side-links li h3'));
 
   const sideLinksText = sideLinks.map((link) => {
@@ -9,7 +8,7 @@ function updatePage(newTodo) {
   });
 
   if (!sideLinksText.includes(newTodo.list)) {
-    addNewList(newTodo.list, [newTodo], content);
+    addNewList(newTodo.list, [newTodo]);
   } else {
     const ul = document.querySelector(`ul.${newTodo.list.split(' ').join('')}`);
     addNewTodo(newTodo, ul, newTodo.list);
@@ -40,28 +39,37 @@ function updateSideLinks(newTodo) {
   }
 }
 
-function updateFormSelectOptions(newTodo) {
-  const newTodoForm = document.querySelector('.new-todo-form');
-  const editTodoForm = document.querySelector('.edit-todo-form');
-  const forms = [newTodoForm, editTodoForm];
+function updateFormSelectOptions(list) {
+  const forms = [
+    document.querySelector('.new-todo-form'),
+    document.querySelector('.edit-todo-form'),
+  ];
 
   forms.forEach((form) => {
     const select = form.querySelector('.list-select');
     const selectOptions = Array.from(
-      document.querySelectorAll('.list-select option')
+      form.querySelectorAll('.list-select option')
     );
     const prevLists = selectOptions.map((opt) => opt.textContent);
 
-    if (!prevLists.includes(newTodo.list)) {
+    if (!prevLists.includes(list)) {
       const option = document.createElement('option');
-      option.value = newTodo.list;
-      option.textContent = newTodo.list;
+      option.value = list;
+      option.textContent = list;
       select.appendChild(option);
     }
   });
 }
 
-function addNewList(list, allTodos, content) {
+function addNewList(list, allTodos) {
+  const content = document.querySelector('.content');
+  const sidebarContainer = document.querySelector('.side-links');
+
+  const btn = document.createElement('button');
+  btn.textContent = list;
+  btn.classList.add('list-btn');
+  sidebarContainer.appendChild(btn);
+
   const details = document.createElement('details');
   const summary = document.createElement('summary');
 
