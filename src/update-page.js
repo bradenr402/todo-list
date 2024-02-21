@@ -1,4 +1,4 @@
-import { addListDropdown, addItemToDropdown } from './setup-page';
+import { addNewList, addNewTodo } from './setup-page';
 
 function updatePage(newTodo) {
   const content = document.querySelector('.content');
@@ -9,10 +9,10 @@ function updatePage(newTodo) {
   });
 
   if (!sideLinksText.includes(newTodo.list)) {
-    addListDropdown(newTodo.list, [newTodo], content);
+    addNewList(newTodo.list, [newTodo], content);
   } else {
     const ul = document.querySelector(`ul.${newTodo.list.split(' ').join('')}`);
-    addItemToDropdown(newTodo, ul, newTodo.list);
+    addNewTodo(newTodo, ul, newTodo.list);
   }
 
   const main = document.querySelector('body main');

@@ -15,8 +15,8 @@ function setupPage(allTodos) {
     h3.classList.add('list-title');
     li.appendChild(h3);
     sidebarContainer.appendChild(li);
-  
-    addListDropdown(list, allTodos, content);
+
+    addNewList(list, allTodos, content);
   }
 
   const main = document.querySelector('body main');
@@ -27,7 +27,7 @@ function setupPage(allTodos) {
   });
 }
 
-function addListDropdown(list, allTodos, content) {
+function addNewList(list, allTodos, content) {
   const details = document.createElement('details');
   const summary = document.createElement('summary');
 
@@ -40,14 +40,14 @@ function addListDropdown(list, allTodos, content) {
   const ul = document.createElement('ul');
 
   for (const todo of allTodos) {
-    addItemToDropdown(todo, ul, list);
+    addNewTodo(todo, ul, list);
   }
 
   details.appendChild(ul);
   content.appendChild(details);
 }
 
-function addItemToDropdown(todo, ul, list) {
+function addNewTodo(todo, ul, list) {
   if (todo.list === list) {
     ul.classList.add(`${todo.list.split(' ').join('')}`);
     const todoItem = document.createElement('li');
@@ -98,4 +98,4 @@ function addTodoCompleted(todo) {
   return todoCompleted;
 }
 
-export { addListDropdown, addItemToDropdown, setupPage };
+export { addNewList, addNewTodo, setupPage };
