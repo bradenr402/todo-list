@@ -96,9 +96,8 @@ function addNewTodo(todo, ul, list) {
     todoItem.classList.add('todo');
 
     label.appendChild(addTodoTitle(todo));
-    label.appendChild(addTodoDescription(todo));
+    if (todo.description) label.appendChild(addTodoDescription(todo));
     label.appendChild(addTodoDate(todo));
-    label.appendChild(addTodoCompleted(todo));
 
     todoItem.appendChild(checkbox);
     todoItem.appendChild(label);
