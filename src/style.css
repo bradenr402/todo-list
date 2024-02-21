@@ -13,6 +13,7 @@ html {
 :root {
   --primary-blue: #5ac8fa;
   --primary-red: #e11d48;
+  --light-gray: #e5e7eb;
 }
 
 .past-due {
@@ -114,7 +115,7 @@ main {
 }
 
 .list-btn:hover {
-  background-color: #e5e7eb;
+  background-color: var(--light-gray);
 }
 
 dialog {
@@ -149,4 +150,8 @@ textarea {
   border-radius: 0.25em;
   background-color: var(--primary-red);
   color: white;
+}
+
+.selected {
+  background-color: var(--light-gray);
 }

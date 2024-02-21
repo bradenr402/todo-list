@@ -1,4 +1,5 @@
 import { format, isBefore, isToday, isAfter } from 'date-fns';
+import { updateTabEventListeners } from './tabs';
 
 function updatePage(newTodo) {
   const sideLinks = Array.from(document.querySelectorAll('.side-links li h3'));
@@ -14,29 +15,7 @@ function updatePage(newTodo) {
     addNewTodo(newTodo, ul, newTodo.list);
   }
 
-  const main = document.querySelector('body main');
-  main.appendChild(content);
-
-  updateSideLinks(newTodo);
-}
-
-function updateSideLinks(newTodo) {
-  const sideLinks = Array.from(document.querySelectorAll('.side-links li h3'));
-
-  const sideLinksText = sideLinks.map((link) => {
-    return link.textContent;
-  });
-
-  if (!sideLinksText.includes(newTodo.list)) {
-    const sidebarContainer = document.querySelector('.side-links');
-
-    const li = document.createElement('li');
-    const h3 = document.createElement('h3');
-    h3.textContent = newTodo.list;
-    h3.classList.add('list-title');
-    li.appendChild(h3);
-    sidebarContainer.appendChild(li);
-  }
+  updateTabEventListeners();
 }
 
 function updateFormSelectOptions(list) {
@@ -67,7 +46,9 @@ function addNewList(list, allTodos) {
 
   const btn = document.createElement('button');
   btn.textContent = list;
-  btn.classList.add('list-btn');
+  btn.classList.add('list-btn', 'tab');
+  if (list === 'Inbox') btn.classList.add('selected')
+  btn.id = list;
   sidebarContainer.appendChild(btn);
 
   const details = document.createElement('details');
