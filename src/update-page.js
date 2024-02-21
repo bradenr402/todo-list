@@ -3,7 +3,7 @@ import { updateTabEventListeners } from './tabs';
 import { updateTodoEventListeners } from './complete-todos';
 
 function updatePage(newTodo) {
-  const sideLinks = Array.from(document.querySelectorAll('.side-links li h3'));
+  const sideLinks = Array.from(document.querySelectorAll('.side-links button'));
 
   const sideLinksText = sideLinks.map((link) => {
     return link.textContent;
