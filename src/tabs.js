@@ -6,13 +6,22 @@ function tabChange(newTabId) {
 
   let newTab = document.getElementById(`${newTabId}`);
   newTab.classList.add('selected');
+
+  const currentTabArticle = document.querySelector(
+    `article.${currentTabId.split(' ').join('_')}`
+  );
+  currentTabArticle.classList.add('hidden');
+
+  const newTabArticle = document.querySelector(
+    `article.${newTabId.split(' ').join('_')}`
+  );
+  newTabArticle.classList.remove('hidden');
 }
 
 function updateTabEventListeners() {
   const tabs = document.querySelectorAll('.tab');
   tabs.forEach((tab) => {
     tab.addEventListener('click', (event) => {
-      console.log(event.target.id, currentTabId);
       if (event.target.id !== currentTabId) tabChange(event.target.id);
 
       currentTabId = tab.id;

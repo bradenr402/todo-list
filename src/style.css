@@ -155,3 +155,7 @@ textarea {
 .selected {
   background-color: var(--light-gray);
 }
+
+.hidden {
+  display: none;
+}

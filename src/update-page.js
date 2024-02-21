@@ -11,7 +11,9 @@ function updatePage(newTodo) {
   if (!sideLinksText.includes(newTodo.list)) {
     addNewList(newTodo.list, [newTodo]);
   } else {
-    const ul = document.querySelector(`ul.${newTodo.list.split(' ').join('')}`);
+    const ul = document.querySelector(
+      `ul.${newTodo.list.split(' ').join('_')}`
+    );
     addNewTodo(newTodo, ul, newTodo.list);
   }
 
@@ -41,24 +43,16 @@ function updateFormSelectOptions(list) {
 }
 
 function addNewList(list, allTodos) {
+  addNewTab(list);
+
   const content = document.querySelector('.content');
-  const sidebarContainer = document.querySelector('.side-links');
-
-  const btn = document.createElement('button');
-  btn.textContent = list;
-  btn.classList.add('list-btn', 'tab');
-  if (list === 'Inbox') btn.classList.add('selected')
-  btn.id = list;
-  sidebarContainer.appendChild(btn);
-
-  const details = document.createElement('details');
-  const summary = document.createElement('summary');
+  const article = document.createElement('article');
 
   const h2 = document.createElement('h2');
   h2.textContent = list;
-  h2.classList.add('list-title');
-  summary.appendChild(h2);
-  details.appendChild(summary);
+
+  article.classList.add(list.split(' ').join('_'));
+  article.appendChild(h2);
 
   const ul = document.createElement('ul');
 
@@ -66,13 +60,28 @@ function addNewList(list, allTodos) {
     addNewTodo(todo, ul, list);
   }
 
-  details.appendChild(ul);
-  content.appendChild(details);
+  if (list !== 'Inbox') article.classList.add('hidden');
+
+  article.appendChild(ul);
+  content.appendChild(article);
+}
+
+function addNewTab(list) {
+  const sidebarContainer = document.querySelector('.side-links');
+
+  const btn = document.createElement('button');
+  btn.textContent = list;
+  btn.classList.add('list-btn', 'tab');
+  if (list === 'Inbox') btn.classList.add('selected');
+
+  btn.id = list;
+
+  sidebarContainer.appendChild(btn);
 }
 
 function addNewTodo(todo, ul, list) {
   if (todo.list === list) {
-    ul.classList.add(`${todo.list.split(' ').join('')}`);
+    ul.classList.add(`${todo.list.split(' ').join('_')}`);
     const todoItem = document.createElement('li');
 
     todoItem.appendChild(addTodoTitle(todo));
