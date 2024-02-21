@@ -1,5 +1,6 @@
 import { format, isBefore, isToday, isAfter } from 'date-fns';
 import { updateTabEventListeners } from './tabs';
+import { updateTodoEventListeners } from './complete-todos';
 
 function updatePage(newTodo) {
   const sideLinks = Array.from(document.querySelectorAll('.side-links li h3'));
@@ -18,6 +19,7 @@ function updatePage(newTodo) {
   }
 
   updateTabEventListeners();
+  updateTodoEventListeners();
 }
 
 function updateFormSelectOptions(list) {
@@ -83,12 +85,23 @@ function addNewTodo(todo, ul, list) {
   if (todo.list === list) {
     ul.classList.add(`${todo.list.split(' ').join('_')}`);
     const todoItem = document.createElement('li');
+    const label = document.createElement('label');
+    const checkbox = document.createElement('input');
 
-    todoItem.appendChild(addTodoTitle(todo));
-    todoItem.appendChild(addTodoDescription(todo));
-    todoItem.appendChild(addTodoDate(todo));
-    todoItem.appendChild(addTodoCompleted(todo));
+    checkbox.type = 'checkbox';
+    checkbox.id = `checkbox-${todo.id}`;
+    label.htmlFor = checkbox.id;
 
+    todoItem.id = todo.id;
+    todoItem.classList.add('todo');
+
+    label.appendChild(addTodoTitle(todo));
+    label.appendChild(addTodoDescription(todo));
+    label.appendChild(addTodoDate(todo));
+    label.appendChild(addTodoCompleted(todo));
+
+    todoItem.appendChild(checkbox);
+    todoItem.appendChild(label);
     ul.appendChild(todoItem);
   }
 }

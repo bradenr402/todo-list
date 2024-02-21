@@ -1,12 +1,15 @@
 import { format } from 'date-fns';
 
 class Todo {
+  static lastId = 0
+
   constructor({ title, dueDate = new Date(), list = 'Inbox', description }) {
     this.title = title;
     this.dueDate = dueDate;
     this.list = list;
     this.description = description;
     this.completed = false;
+    this.id = ++Todo.lastId;
   }
 
   markCompleted() {
