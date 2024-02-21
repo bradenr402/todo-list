@@ -17,7 +17,9 @@
           <!-- list titles generated here -->
         </nav>
 
-        <button class="new-todo-btn">+</button>
+        <div class="new-todo-btn-container">
+          <button class="new-todo-btn">New Todo</button>
+        </div>
       </aside>
 
       <div class="content">
@@ -36,23 +38,12 @@
         <form method="dialog" class="todo-form new-todo-form">
           <div class="input-group">
             <label for="title">Title</label>
-            <input
-              type="text"
-              name="title"
-              id="newTitle"
-              required
-              autofocus
-            />
+            <input type="text" name="title" id="newTitle" required autofocus />
           </div>
 
           <div class="input-group">
             <label for="date">Due Date</label>
-            <input
-              type="date"
-              name="date"
-              id="newDueDate"
-              required
-            />
+            <input type="date" name="date" id="newDueDate" required />
           </div>
 
           <div class="lists-group">
@@ -93,23 +84,12 @@
         <form method="dialog" class="todo-form edit-todo-form">
           <div class="input-group">
             <label for="title">Title</label>
-            <input
-              type="text"
-              name="title"
-              id="editTitle"
-              required
-              autofocus
-            />
+            <input type="text" name="title" id="editTitle" required autofocus />
           </div>
 
           <div class="input-group">
             <label for="date">Due Date</label>
-            <input
-              type="date"
-              name="date"
-              id="editDueDate"
-              required
-            />
+            <input type="date" name="date" id="editDueDate" required />
           </div>
 
           <div class="lists-group">
