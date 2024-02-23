@@ -16,7 +16,6 @@ export default function createDefaultTodos() {
 
   const inboxTodo2 = new Todo({
     title: 'Wash dishes',
-    dueDate: today,
     description:
       'Empty dishwasher, load dirty dishes into dishwasher, rerun clean cycle',
   });
@@ -26,8 +25,32 @@ export default function createDefaultTodos() {
     dueDate: tomorrow,
   });
 
-  const listOfLists = {};
-  addTodos(listOfLists, inboxTodo1, inboxTodo2, inboxTodo3);
+  const remindersTodo = new Todo({
+    title: 'Reminder',
+    dueDate: today,
+    list: 'Reminders',
+  });
 
-  return { listOfLists, todos: [inboxTodo1, inboxTodo2, inboxTodo3] };
+  const milkTodo = new Todo({
+    title: 'Milk',
+    list: 'Groceries',
+  });
+
+  const eggsTodo = new Todo({
+    title: 'Eggs',
+    list: 'Groceries',
+  });
+
+  const breadTodo = new Todo({
+    title: 'Bread',
+    list: 'Groceries',
+  });
+
+  const listOfLists = {};
+  addTodos(listOfLists, inboxTodo1, inboxTodo2, inboxTodo3, remindersTodo, milkTodo, eggsTodo, breadTodo);
+
+  return {
+    listOfLists,
+    todos: [inboxTodo1, inboxTodo2, inboxTodo3, remindersTodo, milkTodo, eggsTodo, breadTodo],
+  };
 }
