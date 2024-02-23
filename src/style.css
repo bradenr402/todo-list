@@ -12,20 +12,13 @@ html {
 
 :root {
   --primary-blue: #5ac8fa;
-  --primary-red: #e11d48;
+  --primary-red: #f56565;
+  --primary-green: #40c0a0;
   --light-gray: #e5e7eb;
 }
 
-.past-due {
-  color: red;
-}
-
-.future-due {
-  color: green;
-}
-
-.due-today {
-  color: blue;
+body {
+  font-family: sans-serif;
 }
 
 .text-bold {
@@ -37,12 +30,24 @@ html {
   line-height: 1.75rem;
 }
 
-details:not(:first-child) {
-  margin-top: 2rem;
+.hidden {
+  display: none;
 }
 
-details summary {
-  cursor: pointer;
+.block {
+  display: block;
+}
+
+.past-due {
+  color: var(--primary-red);
+}
+
+.future-due {
+  color: var(--primary-green);
+}
+
+.due-today {
+  color: var(--primary-blue);
 }
 
 main {
@@ -52,16 +57,13 @@ main {
   padding: 0.5rem;
 }
 
-.list-title {
-  display: inline;
-}
-
 .title {
+  font-family: serif;
   font-size: 2.5rem;
   letter-spacing: 0.1rem;
 }
 
-.sub-title {
+.title > .sub-title {
   color: var(--primary-blue);
 }
 
@@ -101,7 +103,7 @@ main {
   padding-bottom: 0.5rem;
 }
 
-.list-btn {
+.tab {
   cursor: pointer;
   border-radius: 1rem;
   border: none;
@@ -114,8 +116,22 @@ main {
   transition: all 200ms ease-in-out;
 }
 
-.list-btn:hover {
+.tab:hover {
   background-color: var(--light-gray);
+}
+
+.edit-todo-btn,
+input[type='submit'] {
+  background-color: var(--light-gray);
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+}
+
+input[type='submit'] {
+  background-color: var(--primary-blue);
+  color: white;
+  width: 100%;
 }
 
 dialog {
@@ -124,11 +140,16 @@ dialog {
   top: 50%;
   left: 50%;
   padding: 1rem;
-  width: max(350px, 40%);
-
+  width: 80%;
+  max-width: 400px;
   border: none;
   border-radius: 1rem;
   box-shadow: 4px 4px 50px 10px rgba(0, 0, 0, 0.1);
+}
+
+dialog::backdrop {
+  backdrop-filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 textarea {
@@ -154,12 +175,4 @@ textarea {
 
 .selected {
   background-color: var(--light-gray);
-}
-
-.hidden {
-  display: none;
-}
-
-.block {
-  display: block;
 }
