@@ -1,5 +1,5 @@
-import { Todo, addTodos } from './todo';
-import { updateFormSelectOptions, updatePage } from './update-page';
+import { Todo, addTodos, getTodoById } from './todo';
+import { updatePage } from './update-page';
 import listOfLists from './index';
 
 const newDialog = document.querySelector('.modal.new-todo');
@@ -25,3 +25,43 @@ newTodoForm.addEventListener('submit', (event) => {
   newTodoForm.reset(); // clears form
   newDialog.close(); // closes modal
 });
+
+const handleSubmit = (event) => {
+  event.preventDefault();
+
+  const editedTitle = document.getElementById('editTitle').value;
+  const editedDueDate = document.getElementById('editDueDate').value;
+  const editedDescription = document.getElementById('editDescription').value;
+
+  const listValue = document.getElementById('editList').value;
+  const newListValue = document.getElementById('editCreateList').value;
+
+  let editedList = listValue || newListValue || 'Inbox';
+
+  const hiddenIdValue = document.getElementById('hiddenId').value;
+  const editTodo = getTodoById(listOfLists, hiddenIdValue);
+
+  editTodo.title = editedTitle;
+  editTodo.dueDate = editedDueDate;
+  editTodo.description = editedDescription;
+  editTodo.list = editedList;
+
+  updatePage(editTodo);
+};
+
+function updateEditTodoFormEventListeners() {
+
+  const editDialog = document.querySelector('.modal.edit-todo');
+  const editTodoForm = document.querySelector('.edit-todo-form');
+
+  // Remove the existing event listener
+  editTodoForm.removeEventListener('submit', handleSubmit);
+
+  // Add the new event listener
+  editTodoForm.addEventListener('submit', handleSubmit);
+
+  editTodoForm.reset();
+  editDialog.close();
+}
+
+export { updateEditTodoFormEventListeners };

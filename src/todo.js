@@ -47,4 +47,13 @@ function addTodos(list, ...todos) {
   });
 }
 
-export { Todo, addTodos };
+function getTodoById(obj, id) {
+  for (const key in obj) {
+    for (const todo of obj[key]) {
+      if ((todo.id = id)) return todo;
+    }
+  }
+  return null;
+}
+
+export { Todo, addTodos, getTodoById };

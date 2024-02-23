@@ -1,6 +1,11 @@
-import { format, isBefore, isToday, isAfter } from 'date-fns';
+import { format, isBefore, isToday } from 'date-fns';
 import { updateTabEventListeners } from './tabs';
 import { updateTodoEventListeners } from './complete-todos';
+import { updateEditTodoButtonEventListeners } from './modals';
+import { updateEditTodoFormEventListeners } from './forms';
+import { getTodoById } from './todo';
+import removeTimeZone from './remove-timezone';
+import listOfLists from './index';
 
 function updatePage(newTodo) {
   const sideLinks = Array.from(document.querySelectorAll('.side-links button'));
@@ -15,12 +20,16 @@ function updatePage(newTodo) {
     const ul = document.querySelector(
       `ul.${newTodo.list.split(' ').join('_')}`
     );
-    addNewTodo(newTodo, ul, newTodo.list);
+    const editedTodo = getTodoById(listOfLists, newTodo.id);
+    if (editedTodo) editExistingTodo(editedTodo);
+    else addNewTodo(newTodo, ul);
   }
 
   updateFormSelectOptions(newTodo.list);
   updateTabEventListeners();
   updateTodoEventListeners();
+  updateEditTodoButtonEventListeners();
+  updateEditTodoFormEventListeners();
 }
 
 function updateFormSelectOptions(list) {
@@ -53,6 +62,7 @@ function addNewList(list, allTodos) {
 
   const h2 = document.createElement('h2');
   h2.textContent = list;
+  h2.id = `list-${list.split(' ').join('_')}`;
 
   article.classList.add(list.split(' ').join('_'));
   article.appendChild(h2);
@@ -83,7 +93,7 @@ function addNewTab(list) {
 }
 
 function addNewTodo(todo, ul, list) {
-  if (todo.list === list) {
+  if (list && todo.list === list) {
     ul.classList.add(`${todo.list.split(' ').join('_')}`);
     const todoItem = document.createElement('li');
     const label = document.createElement('label');
@@ -96,51 +106,76 @@ function addNewTodo(todo, ul, list) {
     todoItem.id = todo.id;
     todoItem.classList.add('todo');
 
+    const separator = document.createElement('span');
+    separator.textContent = ': ';
+
     label.appendChild(addTodoTitle(todo));
-    if (todo.description) label.appendChild(addTodoDescription(todo));
+    label.appendChild(separator);
     label.appendChild(addTodoDate(todo));
+    label.appendChild(addTodoDescription(todo));
 
     todoItem.appendChild(checkbox);
     todoItem.appendChild(label);
+    todoItem.appendChild(addTodoEditButton(todo));
+    todoItem.appendChild(addTodoId(todo));
     ul.appendChild(todoItem);
   }
+}
+
+function editExistingTodo(todo) {
+  const todoTitle = document.getElementById(`title-${todo.id}`);
+  const todoDate = document.getElementById(`dueDate-${todo.id}`);
+  const todoDescription = document.getElementById(`description-${todo.id}`);
+
+  todoTitle.replaceChildren(addTodoTitle(todo));
+  todoDate.replaceChildren(addTodoDate(todo));
+  todoDescription.replaceChildren(addTodoDescription(todo));
 }
 
 function addTodoTitle(todo) {
   const todoTitle = document.createElement('span');
   todoTitle.textContent = todo.title;
   todoTitle.classList.add('text-bold', 'text-lg');
+  todoTitle.id = `title-${todo.id}`;
   return todoTitle;
 }
 
 function addTodoDescription(todo) {
   const todoDescription = document.createElement('p');
-  todoDescription.textContent = `- ${todo.description}`;
+  todoDescription.textContent = todo.description ? `${todo.description}` : '';
+  todoDescription.id = `description-${todo.id}`;
   return todoDescription;
 }
 
 function addTodoDate(todo) {
-  const todoDate = document.createElement('p');
-  todoDate.textContent = `- Due: ${format(todo.dueDate, 'yyyy-MM-dd')}`;
+  const todoDate = document.createElement('span');
+  const dateWithoutTimeZone = removeTimeZone(todo.dueDate);
+  todoDate.textContent = format(dateWithoutTimeZone, 'yyyy-MM-dd');
 
-  if (isToday(todo.dueDate)) {
-    todoDate.classList.add('due-today');
-    todoDate.textContent += ' (Due today)';
-  } else if (isBefore(todo.dueDate, new Date())) {
+  if (isToday(dateWithoutTimeZone)) todoDate.classList.add('due-today');
+  else if (isBefore(todo.dueDate, new Date()))
     todoDate.classList.add('past-due');
-    todoDate.textContent += ' (Past due)';
-  } else if (isAfter(todo.dueDate, new Date())) {
-    todoDate.classList.add('future-due');
-    todoDate.textContent += ' (Not due yet)';
-  }
+  else todoDate.classList.add('future-due');
+
+  todoDate.id = `dueDate-${todo.id}`;
 
   return todoDate;
 }
 
-function addTodoCompleted(todo) {
-  const todoCompleted = document.createElement('p');
-  todoCompleted.textContent = `- Completed: ${todo.completed ? 'Yes' : 'No'}`;
-  return todoCompleted;
+function addTodoId(todo) {
+  const todoId = document.createElement('div');
+  todoId.setAttribute('data-id', todo.id);
+  todoId.style.display = 'none';
+  return todoId;
+}
+
+function addTodoEditButton(todo) {
+  const todoEditBtn = document.createElement('button');
+  todoEditBtn.textContent = 'Edit';
+  todoEditBtn.id = `edit-${todo.id}`;
+  todoEditBtn.classList.add('edit-todo-btn');
+  todoEditBtn.classList.add('block');
+  return todoEditBtn;
 }
 
 export { addNewList, updateFormSelectOptions, updatePage };
