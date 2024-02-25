@@ -39,7 +39,7 @@ const handleSubmit = (event) => {
   let editedList = listValue || newListValue || 'Inbox';
 
   const hiddenIdValue = document.getElementById('hiddenId').value;
-  const editTodo = getTodoById(listOfLists, hiddenIdValue);
+  const editTodo = getTodoById(hiddenIdValue);
 
   editTodo.title = editedTitle;
   editTodo.dueDate = editedDueDate;

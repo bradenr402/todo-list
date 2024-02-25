@@ -11,7 +11,7 @@ function updateTodoEventListeners() {
     old_checkbox.parentNode.replaceChild(new_checkbox, old_checkbox);
 
     new_checkbox.addEventListener('change', function () {
-      const todoObject = getTodoById(listOfLists, todoId);
+      const todoObject = getTodoById(todoId);
       if (this.checked) {
         todo.style.textDecoration = 'line-through';
         todoObject.markCompleted();

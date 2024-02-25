@@ -1,4 +1,5 @@
 import { format } from 'date-fns';
+import listOfLists from './index';
 
 class Todo {
   static lastId = 0
@@ -47,13 +48,17 @@ function addTodos(list, ...todos) {
   });
 }
 
-function getTodoById(obj, id) {
-  for (const key in obj) {
-    for (const todo of obj[key]) {
+function getTodoById(id) {
+  for (const key in listOfLists) {
+    for (const todo of listOfLists[key]) {
       if (todo.id === +id) return todo;
     }
   }
   return null;
+}
+
+function deleteTodo(todo) {
+
 }
 
 export { Todo, addTodos, getTodoById };
