@@ -3,9 +3,8 @@ import { updateTabEventListeners } from './tabs';
 import { updateTodoEventListeners } from './complete-todos';
 import { updateEditTodoButtonEventListeners } from './modals';
 import { updateEditTodoFormEventListeners } from './forms';
-import { getTodoById } from './todo';
+import { Todo } from './todo';
 import removeTimeZone from './remove-timezone';
-import listOfLists from './index';
 
 function updatePage(newTodo) {
   const sideLinks = Array.from(document.querySelectorAll('.side-links button'));
@@ -20,9 +19,9 @@ function updatePage(newTodo) {
     const ul = document.querySelector(
       `ul.${newTodo.list.split(' ').join('_')}`
     );
-    const editedTodo = getTodoById(listOfLists, newTodo.id);
-    if (editedTodo) editExistingTodo(editedTodo);
-    else addNewTodo(newTodo, ul);
+
+    if (newTodo.id === Todo.lastId) addNewTodo(newTodo, ul, newTodo.list);
+    else editExistingTodo(newTodo);
   }
 
   updateFormSelectOptions(newTodo.list);
@@ -93,7 +92,7 @@ function addNewTab(list) {
 }
 
 function addNewTodo(todo, ul, list) {
-  if (list && todo.list === list) {
+  if (todo.list === list) {
     ul.classList.add(`${todo.list.split(' ').join('_')}`);
     const todoItem = document.createElement('li');
     const label = document.createElement('label');
