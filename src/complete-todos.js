@@ -2,13 +2,16 @@ import listOfLists from './index';
 import { getTodoById } from './todo';
 
 function updateTodoEventListeners() {
-  const todos = document.querySelectorAll('.todo');
+  const todos = Array.from(document.querySelectorAll('.todo'));
   todos.forEach((todo) => {
     const todoId = todo.id;
-    const checkbox = document.getElementById(`checkbox-${todoId}`);
 
-    const todoObject = getTodoById(listOfLists, todo.id);
-    checkbox.addEventListener('change', function () {
+    const old_checkbox = document.getElementById(`checkbox-${todoId}`);
+    const new_checkbox = old_checkbox.cloneNode(true);
+    old_checkbox.parentNode.replaceChild(new_checkbox, old_checkbox);
+
+    new_checkbox.addEventListener('change', function () {
+      const todoObject = getTodoById(listOfLists, todoId);
       if (this.checked) {
         todo.style.textDecoration = 'line-through';
         todoObject.markCompleted();
