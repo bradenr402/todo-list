@@ -9,7 +9,7 @@ class Todo {
     this.list = list;
     this.description = description;
     this.completed = false;
-    this.id = Todo.lastId++;
+    this.id = ++Todo.lastId;
   }
 
   markCompleted() {
