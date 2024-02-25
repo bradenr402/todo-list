@@ -9,18 +9,18 @@ export default function createDefaultTodos() {
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
 
-  const inboxTodo1 = new Todo({
+  const trashTodo = new Todo({
     title: 'Take out trash',
     dueDate: yesterday,
   });
 
-  const inboxTodo2 = new Todo({
+  const dishesTodo = new Todo({
     title: 'Wash dishes',
     description:
       'Empty dishwasher, load dirty dishes into dishwasher, rerun clean cycle',
   });
 
-  const inboxTodo3 = new Todo({
+  const laundryTodo = new Todo({
     title: 'Fold laundry',
     dueDate: tomorrow,
   });
@@ -47,10 +47,10 @@ export default function createDefaultTodos() {
   });
 
   const listOfLists = {};
-  addTodos(listOfLists, inboxTodo1, inboxTodo2, inboxTodo3, remindersTodo, milkTodo, eggsTodo, breadTodo);
+  addTodos(listOfLists, trashTodo, dishesTodo, laundryTodo, remindersTodo, milkTodo, eggsTodo, breadTodo);
 
   return {
     listOfLists,
-    todos: [inboxTodo1, inboxTodo2, inboxTodo3, remindersTodo, milkTodo, eggsTodo, breadTodo],
+    todos: [trashTodo, dishesTodo, laundryTodo, remindersTodo, milkTodo, eggsTodo, breadTodo],
   };
 }
