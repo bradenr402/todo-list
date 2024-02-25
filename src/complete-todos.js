@@ -11,12 +11,13 @@ function updateTodoEventListeners() {
     old_checkbox.parentNode.replaceChild(new_checkbox, old_checkbox);
 
     new_checkbox.addEventListener('change', function () {
+      const todoMain = todo.querySelector('.todo-title');
       const todoObject = getTodoById(todoId);
       if (this.checked) {
-        todo.style.textDecoration = 'line-through';
+        todoMain.style.textDecoration = 'line-through';
         todoObject.markCompleted();
       } else {
-        todo.style.textDecoration = 'none';
+        todoMain.style.textDecoration = 'none';
         todoObject.markUncompleted();
       }
     });

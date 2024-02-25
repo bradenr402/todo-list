@@ -64,6 +64,7 @@ function addNewList(list, allTodos) {
   const h2 = document.createElement('h2');
   h2.textContent = list;
   h2.id = `list-${list.split(' ').join('_')}`;
+  h2.classList.add('list-title');
 
   article.classList.add(list.split(' ').join('_'));
   article.appendChild(h2);
@@ -96,30 +97,33 @@ function addNewTab(list) {
 function addNewTodo(todo, ul, list) {
   if (todo.list === list) {
     ul.classList.add(`${todo.list.split(' ').join('_')}`);
+
     const todoItem = document.createElement('li');
-    const label = document.createElement('label');
-    const checkbox = document.createElement('input');
-
-    checkbox.type = 'checkbox';
-    checkbox.id = `checkbox-${todo.id}`;
-    label.htmlFor = checkbox.id;
-
     todoItem.id = todo.id;
     todoItem.classList.add('todo');
 
-    const separator = document.createElement('span');
-    separator.textContent = ': ';
+    const todoMain = document.createElement('div');
+    todoMain.classList.add('todo-main');
 
-    label.appendChild(addTodoTitle(todo));
-    label.appendChild(separator);
-    label.appendChild(addTodoDate(todo));
-    label.appendChild(addTodoDescription(todo));
+    const label = document.createElement('label');
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.id = `checkbox-${todo.id}`;
+    checkbox.classList.add('checkbox');
+    label.htmlFor = checkbox.id;
 
-    todoItem.appendChild(checkbox);
-    todoItem.appendChild(label);
-    todoItem.appendChild(addTodoEditButton(todo));
-    todoItem.appendChild(addTodoDeleteButton(todo));
-    todoItem.appendChild(addTodoId(todo));
+    label.append(addTodoTitle(todo));
+
+    todoMain.append(checkbox, label, addTodoDate(todo));
+    todoItem.append(todoMain, addTodoDescription(todo));
+
+    const btnContainer = document.createElement('div');
+    btnContainer.classList.add('todo-btn-container');
+
+    btnContainer.append(addTodoEditButton(todo), addTodoDeleteButton(todo));
+
+    todoItem.append(btnContainer, addTodoId(todo));
+
     ul.appendChild(todoItem);
   }
 }
@@ -129,15 +133,15 @@ function editExistingTodo(todo) {
   const todoDate = document.getElementById(`dueDate-${todo.id}`);
   const todoDescription = document.getElementById(`description-${todo.id}`);
 
-  todoTitle.replaceChildren(addTodoTitle(todo));
-  todoDate.replaceChildren(addTodoDate(todo));
-  todoDescription.replaceChildren(addTodoDescription(todo));
+  todoTitle.replaceWith(addTodoTitle(todo));
+  todoDate.replaceWith(addTodoDate(todo));
+  todoDescription.replaceWith(addTodoDescription(todo));
 }
 
 function addTodoTitle(todo) {
   const todoTitle = document.createElement('span');
   todoTitle.textContent = todo.title;
-  todoTitle.classList.add('text-bold', 'text-lg');
+  todoTitle.classList.add('todo-title');
   todoTitle.id = `title-${todo.id}`;
   return todoTitle;
 }
@@ -146,19 +150,21 @@ function addTodoDescription(todo) {
   const todoDescription = document.createElement('p');
   todoDescription.textContent = todo.description ? `${todo.description}` : '';
   todoDescription.id = `description-${todo.id}`;
+  todoDescription.classList.add('todo-description');
   return todoDescription;
 }
 
 function addTodoDate(todo) {
   const todoDate = document.createElement('span');
   const dateWithoutTimeZone = removeTimeZone(todo.dueDate);
-  todoDate.textContent = format(dateWithoutTimeZone, 'yyyy-MM-dd');
+  todoDate.textContent = format(dateWithoutTimeZone, 'M/dd/yyyy');
 
   if (isToday(dateWithoutTimeZone)) todoDate.classList.add('due-today');
   else if (isBefore(todo.dueDate, new Date()))
     todoDate.classList.add('past-due');
   else todoDate.classList.add('future-due');
 
+  todoDate.classList.add('todo-date');
   todoDate.id = `dueDate-${todo.id}`;
 
   return todoDate;
