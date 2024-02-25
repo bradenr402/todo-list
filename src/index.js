@@ -7,6 +7,7 @@ import { updateTabEventListeners } from './tabs';
 import { updateTodoEventListeners } from './complete-todos';
 import { updateEditTodoButtonEventListeners } from './modals';
 import { updateEditTodoFormEventListeners } from './forms';
+import { updateDeleteTodoButtonEventListeners } from './delete-todos';
 
 const { listOfLists, todos } = createDefaultTodos();
 export default listOfLists;
@@ -16,3 +17,4 @@ updateTabEventListeners();
 updateTodoEventListeners();
 updateEditTodoButtonEventListeners();
 updateEditTodoFormEventListeners();
+updateDeleteTodoButtonEventListeners();

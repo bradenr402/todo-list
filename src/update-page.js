@@ -3,6 +3,7 @@ import { updateTabEventListeners } from './tabs';
 import { updateTodoEventListeners } from './complete-todos';
 import { updateEditTodoButtonEventListeners } from './modals';
 import { updateEditTodoFormEventListeners } from './forms';
+import { updateDeleteTodoButtonEventListeners } from './delete-todos';
 import { Todo } from './todo';
 import removeTimeZone from './remove-timezone';
 
@@ -29,6 +30,7 @@ function updatePage(newTodo) {
   updateTodoEventListeners();
   updateEditTodoButtonEventListeners();
   updateEditTodoFormEventListeners();
+  updateDeleteTodoButtonEventListeners();
 }
 
 function updateFormSelectOptions(list) {
@@ -116,6 +118,7 @@ function addNewTodo(todo, ul, list) {
     todoItem.appendChild(checkbox);
     todoItem.appendChild(label);
     todoItem.appendChild(addTodoEditButton(todo));
+    todoItem.appendChild(addTodoDeleteButton(todo));
     todoItem.appendChild(addTodoId(todo));
     ul.appendChild(todoItem);
   }
@@ -173,8 +176,15 @@ function addTodoEditButton(todo) {
   todoEditBtn.textContent = 'Edit';
   todoEditBtn.id = `edit-${todo.id}`;
   todoEditBtn.classList.add('edit-todo-btn');
-  todoEditBtn.classList.add('block');
   return todoEditBtn;
+}
+
+function addTodoDeleteButton(todo) {
+  const todoDeleteBtn = document.createElement('button');
+  todoDeleteBtn.textContent = 'Delete';
+  todoDeleteBtn.id = `delete-${todo.id}`;
+  todoDeleteBtn.classList.add('delete-todo-btn');
+  return todoDeleteBtn;
 }
 
 export { addNewList, updateFormSelectOptions, updatePage };

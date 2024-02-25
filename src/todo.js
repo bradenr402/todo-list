@@ -2,7 +2,7 @@ import { format } from 'date-fns';
 import listOfLists from './index';
 
 class Todo {
-  static lastId = 0
+  static lastId = 0;
 
   constructor({ title, dueDate = new Date(), list = 'Inbox', description }) {
     this.title = title;
@@ -57,8 +57,17 @@ function getTodoById(id) {
   return null;
 }
 
-function deleteTodo(todo) {
-
+function deleteTodo(todoToDelete) {
+  for (const key in listOfLists) {
+    const todos = listOfLists[key];
+    for (let i = 0; i < todos.length; i++) {
+      if (todos[i].id === todoToDelete.id) {
+        todos.splice(i, 1);
+        return true;
+      }
+    }
+  }
+  return false;
 }
 
-export { Todo, addTodos, getTodoById };
+export { Todo, addTodos, getTodoById, deleteTodo };

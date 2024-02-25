@@ -121,11 +121,20 @@ main {
 }
 
 .edit-todo-btn,
+.delete-todo-btn,
 input[type='submit'] {
-  background-color: var(--light-gray);
   border: none;
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
+}
+
+.edit-todo-btn,
+input[type='submit'] {
+  background-color: var(--light-gray);
+}
+
+.delete-todo-btn {
+  background-color: var(--primary-red);
 }
 
 input[type='submit'] {
