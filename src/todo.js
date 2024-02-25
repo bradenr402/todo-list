@@ -9,7 +9,7 @@ class Todo {
     this.list = list;
     this.description = description;
     this.completed = false;
-    this.id = ++Todo.lastId;
+    this.id = Todo.lastId++;
   }
 
   markCompleted() {
@@ -50,7 +50,7 @@ function addTodos(list, ...todos) {
 function getTodoById(obj, id) {
   for (const key in obj) {
     for (const todo of obj[key]) {
-      if ((todo.id = id)) return todo;
+      if (todo.id === +id) return todo;
     }
   }
   return null;
