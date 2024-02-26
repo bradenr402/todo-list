@@ -43,7 +43,7 @@ body {
 
 main {
   display: grid;
-  grid-template-columns: 250px 1fr;
+  grid-template-columns: 300px 1fr;
 }
 
 .title {
@@ -242,4 +242,24 @@ textarea {
 
 .content {
   padding: 2rem;
+}
+
+.tab-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  position: relative;
+}
+
+.list-delete-btn {
+  cursor: default;
+  background-color: var(--primary-red);
+  border-radius: 0.5rem;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+
+  position: absolute;
+  right: 0.5rem;
 }

@@ -70,4 +70,12 @@ function deleteTodo(todoToDelete) {
   return false;
 }
 
-export { Todo, addTodos, getTodoById, deleteTodo };
+function deleteList(listToDelete) {
+  for (const key in listOfLists) {
+    if (key === listToDelete) {
+      delete listOfLists[listToDelete];
+    }
+  }
+}
+
+export { Todo, addTodos, getTodoById, deleteTodo, deleteList };

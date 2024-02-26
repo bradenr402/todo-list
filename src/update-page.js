@@ -6,6 +6,7 @@ import { updateEditTodoFormEventListeners } from './forms';
 import { updateDeleteTodoButtonEventListeners } from './delete-todos';
 import { Todo } from './todo';
 import removeTimeZone from './remove-timezone';
+import { updateDeleteListButtonEventListeners } from './delete-list-buttons';
 
 function updatePage(newTodo) {
   const sideLinks = Array.from(document.querySelectorAll('.side-links button'));
@@ -31,6 +32,7 @@ function updatePage(newTodo) {
   updateEditTodoButtonEventListeners();
   updateEditTodoFormEventListeners();
   updateDeleteTodoButtonEventListeners();
+  updateDeleteListButtonEventListeners();
 }
 
 function updateFormSelectOptions(list) {
@@ -78,15 +80,22 @@ function addNewList(list, allTodos) {
 
 function addNewTab(list) {
   const sidebarContainer = document.querySelector('.side-links');
+  const tabContainer = document.createElement('div');
+  tabContainer.classList.add('tab-container');
 
-  const btn = document.createElement('button');
-  btn.textContent = list;
-  btn.classList.add('list-btn', 'tab');
-  if (list === 'Inbox') btn.classList.add('selected');
+  const tabTitleBtn = document.createElement('button');
+  tabTitleBtn.textContent = list;
+  tabTitleBtn.classList.add('list-btn', 'tab');
+  if (list === 'Inbox') tabTitleBtn.classList.add('selected');
+  tabTitleBtn.id = list;
 
-  btn.id = list;
+  const tabDeleteBtn = document.createElement('btn');
+  tabDeleteBtn.textContent = 'Delete';
+  tabDeleteBtn.classList.add('list-delete-btn');
+  tabDeleteBtn.id = `delete-${list}`;
 
-  sidebarContainer.appendChild(btn);
+  tabContainer.append(tabTitleBtn, tabDeleteBtn);
+  sidebarContainer.appendChild(tabContainer);
 }
 
 function addNewTodo(todo, ul, list) {
