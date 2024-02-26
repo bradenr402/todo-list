@@ -34,25 +34,20 @@ function updatePage(newTodo) {
 }
 
 function updateFormSelectOptions(list) {
-  const forms = [
-    document.querySelector('.new-todo-form'),
-    document.querySelector('.edit-todo-form'),
-  ];
+  const newTodoForm = document.querySelector('.new-todo-form');
 
-  forms.forEach((form) => {
-    const select = form.querySelector('.list-select');
-    const selectOptions = Array.from(
-      form.querySelectorAll('.list-select option')
-    );
-    const prevLists = selectOptions.map((opt) => opt.textContent);
+  const select = newTodoForm.querySelector('.list-select');
+  const selectOptions = Array.from(
+    newTodoForm.querySelectorAll('.list-select option')
+  );
+  const prevLists = selectOptions.map((opt) => opt.textContent);
 
-    if (!prevLists.includes(list)) {
-      const option = document.createElement('option');
-      option.value = list;
-      option.textContent = list;
-      select.appendChild(option);
-    }
-  });
+  if (!prevLists.includes(list)) {
+    const option = document.createElement('option');
+    option.value = list;
+    option.textContent = list;
+    select.appendChild(option);
+  }
 }
 
 function addNewList(list, allTodos) {

@@ -33,18 +33,12 @@ const handleSubmit = (event) => {
   const editedDueDate = document.getElementById('editDueDate').value;
   const editedDescription = document.getElementById('editDescription').value;
 
-  const listValue = document.getElementById('editList').value;
-  const newListValue = document.getElementById('editCreateList').value;
-
-  let editedList = listValue || newListValue || 'Inbox';
-
   const hiddenIdValue = document.getElementById('hiddenId').value;
   const editTodo = getTodoById(hiddenIdValue);
 
   editTodo.title = editedTitle;
   editTodo.dueDate = editedDueDate;
   editTodo.description = editedDescription;
-  editTodo.list = editedList;
 
   updatePage(editTodo);
 };

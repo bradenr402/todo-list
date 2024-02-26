@@ -26,7 +26,6 @@ function updateEditTodoButtonEventListeners() {
       const titleField = document.getElementById('editTitle');
       const dueDateField = document.getElementById('editDueDate');
       const descriptionField = document.getElementById('editDescription');
-      const listField = document.getElementById('editList');
       const hiddenIdField = document.getElementById('hiddenId');
 
       const btnId = btn.id.split('-')[1]; // extract id from btn element
@@ -38,7 +37,6 @@ function updateEditTodoButtonEventListeners() {
       const titleElement = document.getElementById(titleId);
       const dueDateElement = document.getElementById(dueDateId);
       const descriptionElement = document.getElementById(descriptionId);
-      const listElement = btn.parentElement.parentElement.previousElementSibling; // selects the list heading above the todo being edited
 
       titleField.value = titleElement ? titleElement.textContent : '';
 
@@ -52,7 +50,6 @@ function updateEditTodoButtonEventListeners() {
       dueDateField.value = today;
 
       descriptionField.value = descriptionElement ? descriptionElement.textContent : '';
-      listField.value = listElement ? listElement.textContent : '';
       hiddenIdField.value = btnId;
     });
   });
