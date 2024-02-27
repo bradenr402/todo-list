@@ -15,6 +15,7 @@ html {
   --primary-red: #f56565;
   --primary-green: #40c0a0;
   --light-gray: #e5e7eb;
+  --medium-gray: #c7c9cd;
 }
 
 body {
@@ -254,12 +255,22 @@ textarea {
 
 .list-delete-btn {
   cursor: default;
-  background-color: var(--primary-red);
   border-radius: 0.5rem;
   border: none;
-  padding: 0.5rem 1rem;
-  font-size: 0.85rem;
+  padding: 0.25rem;
 
   position: absolute;
   right: 0.5rem;
+
+  display: grid;
+  place-items: center;
+}
+
+.list-delete-btn:hover {
+  /* color: var(--primary-red); */
+  background-color: var(--medium-gray);
+}
+
+.trash-icon {
+  font-size: 24px;
 }

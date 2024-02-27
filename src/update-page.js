@@ -90,7 +90,15 @@ function addNewTab(list) {
   tabTitleBtn.id = list;
 
   const tabDeleteBtn = document.createElement('btn');
-  tabDeleteBtn.textContent = 'Delete';
+
+
+  const span = document.createElement('span');
+  span.classList.add('material-icons', 'trash-icon');
+  span.textContent = 'delete_outline';
+
+
+
+  tabDeleteBtn.appendChild(span);
   tabDeleteBtn.classList.add('list-delete-btn');
   tabDeleteBtn.id = `delete-${list}`;
 
