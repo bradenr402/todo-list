@@ -16,6 +16,8 @@ function tabChange(newTabId) {
     `article.${newTabId.split(' ').join('_')}`
   );
   newTabArticle.classList.remove('hidden');
+
+  currentTabId = newTabId;
 }
 
 function updateTabEventListeners() {
@@ -23,8 +25,6 @@ function updateTabEventListeners() {
   tabs.forEach((tab) => {
     tab.addEventListener('click', (event) => {
       if (event.target.id !== currentTabId) tabChange(event.target.id);
-
-      currentTabId = tab.id;
     });
   });
 }
