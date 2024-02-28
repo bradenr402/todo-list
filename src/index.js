@@ -5,8 +5,7 @@ import createDefaultTodos from './create-default-todos';
 import { setupPage } from './setup-page';
 import { updateTabEventListeners } from './tabs';
 import { updateTodoEventListeners } from './complete-todos';
-import { updateEditTodoButtonEventListeners } from './modals';
-import { updateEditTodoFormEventListeners } from './forms';
+import { updateEditListButtonEventListeners, updateEditTodoButtonEventListeners } from './modals';
 import { updateDeleteTodoButtonEventListeners } from './delete-todos';
 import { updateDeleteListButtonEventListeners } from './delete-list-buttons';
 
@@ -17,6 +16,6 @@ setupPage(todos);
 updateTabEventListeners();
 updateTodoEventListeners();
 updateEditTodoButtonEventListeners();
-updateEditTodoFormEventListeners();
 updateDeleteTodoButtonEventListeners();
+updateEditListButtonEventListeners();
 updateDeleteListButtonEventListeners();

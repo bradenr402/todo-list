@@ -1,8 +1,7 @@
 import { format, isBefore, isToday } from 'date-fns';
 import { updateTabEventListeners } from './tabs';
 import { updateTodoEventListeners } from './complete-todos';
-import { updateEditTodoButtonEventListeners } from './modals';
-import { updateEditTodoFormEventListeners } from './forms';
+import { updateEditListButtonEventListeners, updateEditTodoButtonEventListeners } from './modals';
 import { updateDeleteTodoButtonEventListeners } from './delete-todos';
 import { Todo } from './todo';
 import removeTimeZone from './remove-timezone';
@@ -30,8 +29,8 @@ function updatePage(newTodo) {
   updateTabEventListeners();
   updateTodoEventListeners();
   updateEditTodoButtonEventListeners();
-  updateEditTodoFormEventListeners();
   updateDeleteTodoButtonEventListeners();
+  updateEditListButtonEventListeners();
   updateDeleteListButtonEventListeners();
 }
 
@@ -89,20 +88,31 @@ function addNewTab(list) {
   if (list === 'Inbox') tabTitleBtn.classList.add('selected');
   tabTitleBtn.id = list;
 
-  const tabDeleteBtn = document.createElement('btn');
+  const tabDeleteBtn = document.createElement('button');
+
+  const deleteIcon = document.createElement('span');
+  deleteIcon.classList.add('material-icons', 'trash-icon');
+  deleteIcon.textContent = 'delete_outline';
+
+  tabDeleteBtn.appendChild(deleteIcon);
+
+  const tabEditBtn = document.createElement('button');
+  const editIcon = document.createElement('span');
+  editIcon.classList.add('material-icons', 'edit-icon');
+  editIcon.textContent = 'edit';
+  tabEditBtn.appendChild(editIcon);
 
 
-  const span = document.createElement('span');
-  span.classList.add('material-icons', 'trash-icon');
-  span.textContent = 'delete_outline';
-
-
-
-  tabDeleteBtn.appendChild(span);
-  tabDeleteBtn.classList.add('list-delete-btn');
+  tabDeleteBtn.classList.add('delete-list-btn');
   tabDeleteBtn.id = `delete-${list}`;
 
-  tabContainer.append(tabTitleBtn, tabDeleteBtn);
+  tabEditBtn.classList.add('edit-list-btn');
+  tabEditBtn.id = `edit-${list}`;
+
+
+
+
+  tabContainer.append(tabTitleBtn, tabEditBtn, tabDeleteBtn);
   sidebarContainer.appendChild(tabContainer);
 }
 
@@ -191,7 +201,12 @@ function addTodoId(todo) {
 
 function addTodoEditButton(todo) {
   const todoEditBtn = document.createElement('button');
-  todoEditBtn.textContent = 'Edit';
+
+  const span = document.createElement('span');
+  span.classList.add('material-icons', 'edit-icon');
+  span.textContent = 'edit';
+
+  todoEditBtn.appendChild(span);
   todoEditBtn.id = `edit-${todo.id}`;
   todoEditBtn.classList.add('edit-todo-btn');
   return todoEditBtn;
@@ -199,7 +214,12 @@ function addTodoEditButton(todo) {
 
 function addTodoDeleteButton(todo) {
   const todoDeleteBtn = document.createElement('button');
-  todoDeleteBtn.textContent = 'Delete';
+
+  const span = document.createElement('span');
+  span.classList.add('material-icons', 'trash-icon');
+  span.textContent = 'delete_outline';
+
+  todoDeleteBtn.appendChild(span);
   todoDeleteBtn.id = `delete-${todo.id}`;
   todoDeleteBtn.classList.add('delete-todo-btn');
   return todoDeleteBtn;

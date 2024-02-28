@@ -105,7 +105,23 @@
           </div>
 
           <input type="hidden" id="hiddenId" />
-          <input type="submit" value="Update" />
+          <input type="submit" value="Save" />
+        </form>
+      </dialog>
+
+      <dialog class="modal edit-list">
+        <div class="modal-header">
+          <p>Edit list</p>
+          <button class="close-modal-btn">&times;</button>
+        </div>
+
+        <form method="dialog" class="list-form edit-list-form">
+          <div class="input-group">
+            <label for="title">Title</label>
+            <input type="text" name="title" id="listTitle" required autofocus />
+          </div>
+
+          <input type="submit" value="Confirm" />
         </form>
       </dialog>
     </main>

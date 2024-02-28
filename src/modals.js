@@ -1,4 +1,4 @@
-import removeTimeZone from "./remove-timezone";
+import removeTimeZone from './remove-timezone';
 
 const newDialog = document.querySelector('.modal.new-todo');
 const newTodoButton = document.querySelector('.new-todo-btn');
@@ -20,7 +20,11 @@ function updateEditTodoButtonEventListeners() {
   const editDialog = document.querySelector('.modal.edit-todo');
 
   editTodoButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
+    const old_btn = btn;
+    const new_btn = old_btn.cloneNode(true);
+    old_btn.parentNode.replaceChild(new_btn, old_btn);
+
+    new_btn.addEventListener('click', () => {
       editDialog.showModal();
 
       const titleField = document.getElementById('editTitle');
@@ -49,10 +53,38 @@ function updateEditTodoButtonEventListeners() {
       const today = dueDateValue.getFullYear() + '-' + month + '-' + day;
       dueDateField.value = today;
 
-      descriptionField.value = descriptionElement ? descriptionElement.textContent : '';
+      descriptionField.value = descriptionElement
+        ? descriptionElement.textContent
+        : '';
       hiddenIdField.value = btnId;
     });
   });
 }
 
-export { updateEditTodoButtonEventListeners };
+function updateEditListButtonEventListeners() {
+  const editListButtons = document.querySelectorAll('.edit-list-btn');
+  const listDialog = document.querySelector('.modal.edit-list');
+
+  editListButtons.forEach((btn) => {
+    const old_btn = btn;
+    const new_btn = old_btn.cloneNode(true);
+    old_btn.parentNode.replaceChild(new_btn, old_btn);
+
+    new_btn.addEventListener('click', () => {
+      listDialog.showModal();
+
+      const titleField = document.getElementById('listTitle');
+
+      const btnId = btn.id.split('-')[1];
+
+      const tabElement = document.getElementById(btnId);
+
+      titleField.value = tabElement ? tabElement.textContent : '';
+    });
+  });
+}
+
+export {
+  updateEditTodoButtonEventListeners,
+  updateEditListButtonEventListeners,
+};

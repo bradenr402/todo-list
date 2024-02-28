@@ -57,6 +57,8 @@ main {
 .new-todo-btn-container {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   padding-top: 1rem;
+  display: flex;
+  justify-content: center;
 }
 
 .title > .sub-title {
@@ -85,11 +87,6 @@ main {
 
 .new-todo-btn:hover {
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.new-todo-btn-container {
-  display: flex;
-  justify-content: center;
 }
 
 .sidebar {
@@ -127,26 +124,23 @@ main {
 }
 
 .edit-todo-btn,
-.delete-todo-btn,
 input[type='submit'] {
   border: none;
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
-}
 
-.edit-todo-btn,
-input[type='submit'] {
   background-color: var(--light-gray);
-}
-
-.delete-todo-btn {
-  background-color: var(--primary-red);
 }
 
 input[type='submit'] {
   background-color: var(--primary-blue);
   color: white;
   width: 100%;
+  transition: all 300ms ease-in-out;
+}
+
+input[type='submit']:hover {
+  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.1);
 }
 
 dialog {
@@ -205,8 +199,7 @@ textarea {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.todo-description,
-.todo-btn-container {
+.todo-description {
   margin-left: 1.25rem;
 }
 
@@ -214,6 +207,8 @@ textarea {
   display: flex;
   gap: 0.5rem;
   margin-top: 0.5rem;
+
+  justify-content: end;
 }
 
 .todo-main {
@@ -253,24 +248,86 @@ textarea {
   position: relative;
 }
 
-.list-delete-btn {
+.edit-list-btn,
+.delete-list-btn {
   cursor: default;
+  background-color: transparent;
   border-radius: 0.5rem;
   border: none;
   padding: 0.25rem;
 
+  display: grid;
+  place-items: center;
+
   position: absolute;
+}
+
+.delete-list-btn {
   right: 0.5rem;
+}
+
+.edit-list-btn {
+  right: 3rem;
+}
+
+.delete-list-btn:focus,
+.delete-list-btn:hover,
+.delete-todo-btn:focus,
+.delete-todo-btn:hover {
+  color: var(--primary-red);
+}
+
+.delete-list-btn:hover,
+.edit-list-btn:hover {
+  background-color: var(--medium-gray);
+}
+
+.edit-list-btn,
+.delete-list-btn,
+.todo .edit-todo-btn,
+.todo .delete-todo-btn {
+  visibility: hidden;
+}
+
+.tab-container:has(.selected):focus-within .edit-list-btn,
+.tab-container:has(.selected):hover .edit-list-btn,
+.tab-container:has(.selected):focus-within .delete-list-btn,
+.tab-container:has(.selected):hover .delete-list-btn {
+  visibility: visible;
+}
+
+.todo:focus-within .edit-todo-btn,
+.todo:hover .edit-todo-btn,
+.todo:focus-within .delete-todo-btn,
+.todo:hover .delete-todo-btn {
+  visibility: visible;
+}
+
+.edit-todo-btn,
+.delete-todo-btn {
+  background-color: transparent;
+  border-radius: 0.5rem;
+  border: none;
+  padding: 0.25rem;
 
   display: grid;
   place-items: center;
 }
 
-.list-delete-btn:hover {
-  /* color: var(--primary-red); */
-  background-color: var(--medium-gray);
+.edit-todo-btn:hover,
+.delete-todo-btn:hover {
+  background-color: var(--light-gray);
 }
 
-.trash-icon {
+.tab-container .edit-icon {
+  font-size: 22px;
+}
+
+.tab-container .trash-icon {
   font-size: 24px;
+}
+
+.todo .edit-icon,
+.todo .trash-icon {
+  font-size: 18px;
 }

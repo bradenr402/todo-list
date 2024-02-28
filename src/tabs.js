@@ -1,16 +1,18 @@
 let currentTabId = 'Inbox';
 
 function tabChange(newTabId) {
-  let currentTab = document.getElementById(`${currentTabId}`);
-  currentTab.classList.remove('selected');
+  const allTabs = document.querySelectorAll('.tab');
+  allTabs.forEach((tab) => {
+    tab.classList.remove('selected');
+  });
 
-  let newTab = document.getElementById(`${newTabId}`);
+  const allArticles = document.querySelectorAll('article');
+  allArticles.forEach((article) => {
+    article.classList.add('hidden');
+  });
+
+  const newTab = document.getElementById(`${newTabId}`);
   newTab.classList.add('selected');
-
-  const currentTabArticle = document.querySelector(
-    `article.${currentTabId.split(' ').join('_')}`
-  );
-  currentTabArticle.classList.add('hidden');
 
   const newTabArticle = document.querySelector(
     `article.${newTabId.split(' ').join('_')}`
