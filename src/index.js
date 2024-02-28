@@ -1,6 +1,7 @@
 import './style.css';
 import './modals';
 import './forms';
+import './hover-sortable-items'
 import createDefaultTodos from './create-default-todos';
 import { setupPage } from './setup-page';
 import { updateTabEventListeners } from './tabs';

@@ -190,12 +190,18 @@ textarea {
   margin-right: 0.5rem;
 }
 
-.todo {
-  list-style: none;
-  padding: 1rem 0;
+.list-title {
+  margin: 0 0.5rem 0.5rem;
 }
 
-.todo:not(:last-child) {
+.todo {
+  list-style: none;
+  padding: 0.5rem;
+  border-radius: 1rem;
+}
+
+.todo:not(:last-child)::after {
+  content: '';
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
@@ -330,4 +336,8 @@ textarea {
 .todo .edit-icon,
 .todo .trash-icon {
   font-size: 18px;
+}
+
+.dragging {
+  background-color: var(--light-gray);
 }

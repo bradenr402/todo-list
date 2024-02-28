@@ -1,11 +1,15 @@
 import { format, isBefore, isToday } from 'date-fns';
 import { updateTabEventListeners } from './tabs';
 import { updateTodoEventListeners } from './complete-todos';
-import { updateEditListButtonEventListeners, updateEditTodoButtonEventListeners } from './modals';
+import {
+  updateEditListButtonEventListeners,
+  updateEditTodoButtonEventListeners,
+} from './modals';
 import { updateDeleteTodoButtonEventListeners } from './delete-todos';
 import { Todo } from './todo';
 import removeTimeZone from './remove-timezone';
 import { updateDeleteListButtonEventListeners } from './delete-list-buttons';
+import Sortable from 'sortablejs';
 
 function updatePage(newTodo) {
   const sideLinks = Array.from(document.querySelectorAll('.side-links button'));
@@ -66,6 +70,11 @@ function addNewList(list, allTodos) {
   article.appendChild(h2);
 
   const ul = document.createElement('ul');
+  Sortable.create(ul, {
+    animation: 150,
+    ghostClass: 'dragging',
+    swapThreshold: 0.2,
+  });
 
   for (const todo of allTodos) {
     addNewTodo(todo, ul, list);
@@ -102,15 +111,11 @@ function addNewTab(list) {
   editIcon.textContent = 'edit';
   tabEditBtn.appendChild(editIcon);
 
-
   tabDeleteBtn.classList.add('delete-list-btn');
   tabDeleteBtn.id = `delete-${list}`;
 
   tabEditBtn.classList.add('edit-list-btn');
   tabEditBtn.id = `edit-${list}`;
-
-
-
 
   tabContainer.append(tabTitleBtn, tabEditBtn, tabDeleteBtn);
   sidebarContainer.appendChild(tabContainer);
