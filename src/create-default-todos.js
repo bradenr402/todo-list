@@ -25,12 +25,6 @@ export default function createDefaultTodos() {
     dueDate: tomorrow,
   });
 
-  const remindersTodo = new Todo({
-    title: 'Reminder',
-    dueDate: today,
-    list: 'Reminders',
-  });
-
   const milkTodo = new Todo({
     title: 'Milk',
     list: 'Groceries',
@@ -47,10 +41,10 @@ export default function createDefaultTodos() {
   });
 
   const listOfLists = {};
-  addTodos(listOfLists, trashTodo, dishesTodo, laundryTodo, remindersTodo, milkTodo, eggsTodo, breadTodo);
+  addTodos(listOfLists, trashTodo, dishesTodo, laundryTodo, milkTodo, eggsTodo, breadTodo);
 
   return {
     listOfLists,
-    todos: [trashTodo, dishesTodo, laundryTodo, remindersTodo, milkTodo, eggsTodo, breadTodo],
+    todos: [trashTodo, dishesTodo, laundryTodo, milkTodo, eggsTodo, breadTodo],
   };
 }
