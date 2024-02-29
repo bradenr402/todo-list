@@ -10,14 +10,16 @@ class Todo {
     list = 'Inbox',
     description,
     completed = false,
-    id = ++Todo.lastId,
+    id,
   }) {
     this.title = title;
     this.dueDate = dueDate;
     this.list = list;
     this.description = description;
     this.completed = completed;
-    this.id = id;
+    this.id = id ? id : Todo.lastId;
+
+    Todo.lastId++;
   }
 
   markCompleted() {
