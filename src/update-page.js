@@ -178,6 +178,8 @@ function addTodoDescription(todo) {
   }
 
   const todoDescription = document.createElement('div');
+  todoDescription.classList.add('todo-description-container');
+
   descriptionSegments.forEach((segment) => {
     const p = document.createElement('p');
     p.textContent = segment;
