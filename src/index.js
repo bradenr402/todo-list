@@ -8,7 +8,8 @@ import { setupPage } from './setup-page';
 import storageAvailable from './storage-available';
 import updateListeners from './update-listeners';
 
-let listOfLists = {}, initialTodos = [];
+let listOfLists = {},
+  initialTodos = [];
 
 // loads saved todos if available, otherwise creates default todos
 if (storageAvailable('localStorage') && localStorage.getItem('listOfLists')) {
