@@ -4,13 +4,20 @@ import listOfLists from './index';
 class Todo {
   static lastId = 0;
 
-  constructor({ title, dueDate = new Date(), list = 'Inbox', description }) {
+  constructor({
+    title,
+    dueDate = new Date(),
+    list = 'Inbox',
+    description,
+    completed = false,
+    id = ++Todo.lastId,
+  }) {
     this.title = title;
     this.dueDate = dueDate;
     this.list = list;
     this.description = description;
-    this.completed = false;
-    this.id = ++Todo.lastId;
+    this.completed = completed;
+    this.id = id;
   }
 
   markCompleted() {

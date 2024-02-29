@@ -1,15 +1,10 @@
 import { format, isBefore, isToday } from 'date-fns';
-import { updateTabEventListeners } from './tabs';
-import { updateTodoEventListeners } from './complete-todos';
-import {
-  updateEditListButtonEventListeners,
-  updateEditTodoButtonEventListeners,
-} from './modals';
-import { updateDeleteTodoButtonEventListeners } from './delete-todos';
+import Sortable from 'sortablejs';
 import { Todo } from './todo';
 import removeTimeZone from './remove-timezone';
-import { updateDeleteListButtonEventListeners } from './delete-list-buttons';
-import Sortable from 'sortablejs';
+import updateListeners from './update-listeners';
+import updateStoredList from './update-stored-list';
+import { tabChange } from './tabs';
 
 function updatePage(newTodo) {
   const sideLinks = Array.from(document.querySelectorAll('.side-links button'));
@@ -30,12 +25,8 @@ function updatePage(newTodo) {
   }
 
   updateFormSelectOptions(newTodo.list);
-  updateTabEventListeners();
-  updateTodoEventListeners();
-  updateEditTodoButtonEventListeners();
-  updateDeleteTodoButtonEventListeners();
-  updateEditListButtonEventListeners();
-  updateDeleteListButtonEventListeners();
+  updateListeners();
+  updateStoredList();
 }
 
 function updateFormSelectOptions(list) {
@@ -139,6 +130,8 @@ function addNewTodo(todo, ul, list) {
     checkbox.classList.add('checkbox');
     label.htmlFor = checkbox.id;
 
+    if (todo.completed) checkbox.checked = true;
+
     label.append(addTodoTitle(todo));
 
     todoMain.append(checkbox, label, addTodoDate(todo));
@@ -168,8 +161,11 @@ function editExistingTodo(todo) {
 function addTodoTitle(todo) {
   const todoTitle = document.createElement('span');
   todoTitle.textContent = todo.title;
-  todoTitle.classList.add('todo-title');
   todoTitle.id = `title-${todo.id}`;
+  todoTitle.classList.add('todo-title');
+
+  if (todo.completed) todoTitle.classList.add('line-through');
+
   return todoTitle;
 }
 

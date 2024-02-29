@@ -1,4 +1,5 @@
 import { getTodoById, deleteTodo } from './todo';
+import updateStoredList from './update-stored-list';
 
 function updateDeleteTodoButtonEventListeners() {
   const deleteTodoButtons = Array.from(
@@ -17,6 +18,8 @@ function updateDeleteTodoButtonEventListeners() {
 
       todoItem.remove();
       deleteTodo(getTodoById(todoId));
+
+      updateStoredList();
     });
   });
 }

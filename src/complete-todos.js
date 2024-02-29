@@ -1,5 +1,5 @@
-import listOfLists from './index';
 import { getTodoById } from './todo';
+import updateStoredList from './update-stored-list';
 
 function updateTodoEventListeners() {
   const todos = Array.from(document.querySelectorAll('.todo'));
@@ -14,12 +14,14 @@ function updateTodoEventListeners() {
       const todoMain = todo.querySelector('.todo-title');
       const todoObject = getTodoById(todoId);
       if (this.checked) {
-        todoMain.style.textDecoration = 'line-through';
+        todoMain.classList.add('line-through');
         todoObject.markCompleted();
       } else {
-        todoMain.style.textDecoration = 'none';
+        todoMain.classList.remove('line-through');
         todoObject.markUncompleted();
       }
+
+      updateStoredList();
     });
   });
 }

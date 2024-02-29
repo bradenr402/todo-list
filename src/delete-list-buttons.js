@@ -1,5 +1,6 @@
 import { tabChange } from './tabs';
 import { deleteList } from './todo';
+import updateStoredList from './update-stored-list';
 
 function updateDeleteListButtonEventListeners() {
   const deleteListButtons = document.querySelectorAll('.delete-list-btn');
@@ -36,11 +37,13 @@ function updateDeleteListButtonEventListeners() {
       const listArticle = document.querySelector(
         `article.${listId.split(' ').join('_')}`
       );
-      const listTab = document.getElementById(listId);
+      const listTab = document.querySelector(`.tab-container:has(.tab[id="${listId}"]`);
 
       listArticle.remove();
-      listTab.parentElement.remove(); // removes both tab button and delete button
+      listTab.remove();
       deleteList(listId);
+
+      updateStoredList();
     });
   });
 }

@@ -208,7 +208,10 @@ textarea {
 }
 
 .todo-description {
+  height: 1em;
   margin-left: 1.25rem;
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .todo-btn-container {
@@ -230,18 +233,9 @@ textarea {
   font-size: 1.125rem;
 }
 
-.todo-description {
-  font-size: 0.9rem;
-  color: rgba(0, 0, 0, 0.6);
-}
-
 .todo-date {
   margin-left: auto;
   font-size: 0.9rem;
-}
-
-.checkbox:checked + label {
-  color: rgba(0, 0, 0, 0.6);
 }
 
 .content {
@@ -368,7 +362,44 @@ select {
   font-size: 1.4rem;
 }
 
-label {
+label:not(> .todo-title) {
   font-size: 1.1rem;
   margin-bottom: 0.25rem;
+}
+
+.line-through {
+  /* text-decoration: line-through; */
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.checkbox + label:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+@keyframes strike {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.line-through {
+  position: relative;
+}
+
+.line-through::after {
+  content: ' ';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: black;
+  animation-name: strike;
+  animation-duration: 300ms;
+  animation-timing-function: ease-out;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
