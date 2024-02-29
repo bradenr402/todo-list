@@ -4,8 +4,6 @@ export default function createDefaultTodos() {
   const yesterday = new Date();
   yesterday.setDate(yesterday.getDate() - 1);
 
-  const today = new Date();
-
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
 
@@ -17,11 +15,12 @@ export default function createDefaultTodos() {
   const dishesTodo = new Todo({
     title: 'Wash dishes',
     description:
-      'Empty dishwasher, load dirty dishes into dishwasher, rerun clean cycle',
+      'Empty dishwasher and put away clean dishes\nRinse dishes in sink\nLoad dirty dishes into dishwasher\nRerun clean cycle',
   });
 
   const laundryTodo = new Todo({
     title: 'Fold laundry',
+    description: 'Fold and put away laundry in basket',
     dueDate: tomorrow,
   });
 
