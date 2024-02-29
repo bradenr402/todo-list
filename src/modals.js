@@ -54,9 +54,9 @@ function updateEditTodoButtonEventListeners() {
       dueDateField.value = today;
 
       descriptionField.value = descriptionElement.innerHTML
-            .replace(/<\/p><p class="todo-description">/g, '\n') // shows line breaks properly
-            .replace(/<p class="todo-description">/g, '') // removes opening <p> tag
-            .replace(/<\/p>/g, '') // removes closing </p> tag
+        .replace(/<\/p><p class="todo-description">/g, '\n') // shows line breaks properly
+        .replace(/<p class="todo-description">/g, '') // removes opening <p> tag
+        .replace(/<\/p>/g, ''); // removes closing </p> tag
       hiddenIdField.value = btnId;
     });
   });
@@ -88,4 +88,11 @@ function updateEditListButtonEventListeners() {
 export {
   updateEditTodoButtonEventListeners,
   updateEditListButtonEventListeners,
+};
+
+// close modal when clicking outside
+window.onclick = function (event) {
+  if (event.target.tagName === 'DIALOG') {
+    event.target.close();
+  }
 };
