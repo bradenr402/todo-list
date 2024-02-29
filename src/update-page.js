@@ -75,6 +75,8 @@ function addNewList(list, allTodos) {
 
   article.appendChild(ul);
   content.appendChild(article);
+
+  tabChange(list)
 }
 
 function addNewTab(list) {
