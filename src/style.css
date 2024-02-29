@@ -16,6 +16,7 @@ html {
   --primary-green: #40c0a0;
   --light-gray: #e5e7eb;
   --medium-gray: #c7c9cd;
+  --light-blue: #c9edfd;
 }
 
 body {
@@ -119,7 +120,7 @@ main {
   transition: all 200ms ease-in-out;
 }
 
-.tab:hover {
+.side-links:not(:has(.dragging)) .tab-container:not(.dragging):hover .tab {
   background-color: var(--light-gray);
 }
 
@@ -199,7 +200,6 @@ textarea {
 .todo {
   list-style: none;
   padding: 0.5rem;
-  border-radius: 1rem;
 }
 
 .todo:not(:last-child)::after {
@@ -275,7 +275,7 @@ textarea {
 }
 
 .edit-list-btn {
-  right: 3rem;
+  right: 2.75rem;
 }
 
 .delete-list-btn:focus,
@@ -327,10 +327,7 @@ textarea {
   background-color: var(--light-gray);
 }
 
-.tab-container .edit-icon {
-  font-size: 22px;
-}
-
+.tab-container .edit-icon,
 .tab-container .trash-icon {
   font-size: 24px;
 }
@@ -341,7 +338,12 @@ textarea {
 }
 
 .dragging {
-  background-color: var(--light-gray);
+  background-color: var(--light-blue);
+  border-radius: 1rem;
+}
+
+.tab-container.dragging .tab.selected {
+  background-color: var(--light-blue);
 }
 
 input {
