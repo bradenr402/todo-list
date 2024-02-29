@@ -53,9 +53,10 @@ function updateEditTodoButtonEventListeners() {
       const today = dueDateValue.getFullYear() + '-' + month + '-' + day;
       dueDateField.value = today;
 
-      descriptionField.value = descriptionElement
-        ? descriptionElement.textContent
-        : '';
+      descriptionField.value = descriptionElement.innerHTML
+            .replace(/<\/p><p class="todo-description">/g, '\n') // shows line breaks properly
+            .replace(/<p class="todo-description">/g, '') // removes opening <p> tag
+            .replace(/<\/p>/g, '') // removes closing </p> tag
       hiddenIdField.value = btnId;
     });
   });

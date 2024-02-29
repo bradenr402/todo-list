@@ -170,10 +170,19 @@ function addTodoTitle(todo) {
 }
 
 function addTodoDescription(todo) {
-  const todoDescription = document.createElement('p');
-  todoDescription.textContent = todo.description ? `${todo.description}` : '';
+  let descriptionSegments = [];
+  if (todo.description) {
+    descriptionSegments = todo.description.trimEnd().split('\n');
+  }
+
+  const todoDescription = document.createElement('div');
+  descriptionSegments.forEach((segment) => {
+    const p = document.createElement('p');
+    p.textContent = segment;
+    p.classList.add('todo-description');
+    todoDescription.appendChild(p);
+  });
   todoDescription.id = `description-${todo.id}`;
-  todoDescription.classList.add('todo-description');
   return todoDescription;
 }
 
