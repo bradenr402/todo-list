@@ -16,7 +16,7 @@ newTodoForm.addEventListener('submit', (event) => {
   const listValue = document.getElementById('newList').value;
   const newListValue = document.getElementById('newCreateList').value;
 
-  let list = listValue || newListValue || 'Inbox';
+  let list = listValue || newListValue;
 
   const newTodo = new Todo({ title, dueDate, list, description });
   addTodos(listOfLists, newTodo);

@@ -1,5 +1,3 @@
-let currentTabId = 'Inbox';
-
 function tabChange(newTabId) {
   const allTabs = document.querySelectorAll('.tab');
   allTabs.forEach((tab) => {
@@ -18,15 +16,14 @@ function tabChange(newTabId) {
     `article.${newTabId.split(' ').join('_')}`
   );
   newTabArticle.classList.remove('hidden');
-
-  currentTabId = newTabId;
 }
 
 function updateTabEventListeners() {
   const tabs = document.querySelectorAll('.tab');
   tabs.forEach((tab) => {
     tab.addEventListener('click', (event) => {
-      if (event.target.id !== currentTabId) tabChange(event.target.id);
+      const classList = Array.from(event.target.classList);
+      if (!classList.includes('selected')) tabChange(event.target.id);
     });
   });
 }

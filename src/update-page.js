@@ -71,8 +71,6 @@ function addNewList(list, allTodos) {
     addNewTodo(todo, ul, list);
   }
 
-  if (list !== 'Inbox') article.classList.add('hidden');
-
   article.appendChild(ul);
   content.appendChild(article);
 
@@ -87,7 +85,6 @@ function addNewTab(list) {
   const tabTitleBtn = document.createElement('button');
   tabTitleBtn.textContent = list;
   tabTitleBtn.classList.add('list-btn', 'tab');
-  if (list === 'Inbox') tabTitleBtn.classList.add('selected');
   tabTitleBtn.id = list;
 
   const tabDeleteBtn = document.createElement('button');
