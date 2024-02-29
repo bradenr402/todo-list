@@ -402,3 +402,17 @@ label:not(> .todo-title) {
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
 }
+
+dialog {
+  display: block;
+  transition: opacity 300ms ease-in-out;
+}
+
+dialog:not([open]) {
+  pointer-events: none;
+  opacity: 0;
+}
+
+dialog[open] {
+  opacity: 1;
+}
