@@ -2,6 +2,7 @@ import './style.css';
 import './modals';
 import './forms';
 import './tab-sort';
+import './tutorial';
 import { Todo } from './todo';
 import createDefaultTodos from './create-default-todos';
 import { setupPage } from './setup-page';
@@ -35,6 +36,7 @@ if (storageAvailable('localStorage') && localStorage.getItem('listOfLists')) {
   const defaultTodos = createDefaultTodos();
   initialTodos = defaultTodos.todos;
   listOfLists = defaultTodos.listOfLists;
+
   localStorage.setItem('listOfLists', JSON.stringify(listOfLists));
 }
 

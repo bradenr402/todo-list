@@ -62,6 +62,14 @@ main {
   justify-content: center;
 }
 
+.tutorial-btn-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: auto;
+  gap: 0.5rem;
+}
+
 .title > .sub-title {
   color: var(--primary-blue);
 }
@@ -73,16 +81,20 @@ main {
   width: 100%;
 }
 
-.new-todo-btn {
+.new-todo-btn,
+.replay-tutorial-btn,
+.end-tutorial-btn {
   cursor: pointer;
   border-radius: 1rem;
+  padding: 0.75rem;
+  width: 100%;
+  font-size: 1.125rem;
+}
+
+.new-todo-btn {
   border: none;
   background-color: var(--primary-blue);
   color: white;
-  font-weight: 500;
-  padding: 0.75rem;
-  width: 100%;
-  font-size: 1.25rem;
   transition: box-shadow 200ms ease-in-out;
 }
 
@@ -90,15 +102,37 @@ main {
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.sidebar {
-  border-right: 1px solid rgba(0, 0, 0, 0.1);
-  height: 100svh;
+.replay-tutorial-btn,
+.end-tutorial-btn {
+  border: 1px solid var(--primary-red);
+  background-color: white;
+  color: var(--primary-red);
+  transition: color 200ms ease-in-out, background-color 200ms ease-in-out;
+}
+
+.replay-tutorial-btn:hover,
+.end-tutorial-btn:hover {
+  color: white;
+  background-color: var(--primary-red);
 }
 
 .title,
 .side-links,
-.new-todo-btn-container {
+.new-todo-btn-container,
+.tutorial-btn-container {
   padding: 1rem;
+}
+
+main {
+  height: 100svh;
+}
+
+.sidebar {
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
 }
 
 .side-links {
@@ -383,7 +417,6 @@ label:not(> .todo-title) {
 }
 
 .line-through {
-  /* text-decoration: line-through; */
   color: rgba(0, 0, 0, 0.6);
 }
 
@@ -405,7 +438,7 @@ label:not(> .todo-title) {
 }
 
 .line-through::after {
-  content: ' ';
+  content: '';
   position: absolute;
   top: 50%;
   left: 0;
