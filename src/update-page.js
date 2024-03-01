@@ -20,7 +20,7 @@ function updatePage(newTodo) {
       `ul.${newTodo.list.split(' ').join('_')}`
     );
 
-    if (newTodo.id === Todo.lastId) addNewTodo(newTodo, ul, newTodo.list);
+    if (newTodo.id === Todo.globalId - 1) addNewTodo(newTodo, ul, newTodo.list);
     else editExistingTodo(newTodo);
   }
 

@@ -2,7 +2,7 @@ import { format } from 'date-fns';
 import listOfLists from './index';
 
 class Todo {
-  static lastId = 0;
+  static globalId = 0;
 
   constructor({
     title,
@@ -17,9 +17,9 @@ class Todo {
     this.list = list;
     this.description = description;
     this.completed = completed;
-    this.id = id ? id : Todo.lastId;
+    this.id = id ? id : Todo.globalId;
 
-    Todo.lastId++;
+    Todo.globalId++;
   }
 
   markCompleted() {
