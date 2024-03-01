@@ -27,7 +27,7 @@ function updateDeleteListButtonEventListeners() {
         );
 
         const nextTab = document.querySelector(
-          `.tab-container:has(.tab#${listId}) + .tab-container .tab`
+          `.tab-container:has(.tab[id="${listId}"]) + .tab-container .tab`
         );
 
         if (firstTab.id !== currentTab.id) tabChange(firstTab.id);
@@ -37,7 +37,7 @@ function updateDeleteListButtonEventListeners() {
       const listArticle = document.querySelector(
         `article.${listId.split(' ').join('_')}`
       );
-      const listTab = document.querySelector(`.tab-container:has(.tab[id="${listId}"]`);
+      const listTab = document.querySelector(`.tab-container:has(.tab[id="${listId}"])`);
 
       listArticle.remove();
       listTab.remove();
