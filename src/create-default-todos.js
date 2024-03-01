@@ -7,43 +7,44 @@ export default function createDefaultTodos() {
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
 
-  const trashTodo = new Todo({
-    title: 'Take out trash',
-    dueDate: yesterday,
+  const todo1 = new Todo({
+    title: 'Click the checkbox or the title on a todo to mark it as complete',
+    description: 'Click it again to mark it as incomplete',
   });
 
-  const dishesTodo = new Todo({
-    title: 'Wash dishes',
-    description:
-      'Empty dishwasher and put away clean dishes\nRinse dishes in sink\nLoad dirty dishes into dishwasher\nRerun clean cycle',
+  const todo2 = new Todo({
+    title: 'Click the edit (pencil) icon on a todo to edit it',
   });
 
-  const laundryTodo = new Todo({
-    title: 'Fold laundry',
-    description: 'Fold and put away laundry in basket',
-    dueDate: tomorrow,
+  const todo3 = new Todo({
+    title: 'Click the trash icon on a todo to delete it',
   });
 
-  const milkTodo = new Todo({
-    title: 'Milk',
-    list: 'Groceries',
+  const todo4 = new Todo({
+    title: 'Click the "New Todo" button to add a new todo',
   });
 
-  const eggsTodo = new Todo({
-    title: 'Eggs',
-    list: 'Groceries',
+  const todo5 = new Todo({
+    title: 'Click the edit (pencil) icon on a list to edit the list name',
   });
 
-  const breadTodo = new Todo({
-    title: 'Bread',
-    list: 'Groceries',
+  const todo6 = new Todo({
+    title: 'Click the trash icon on a list to delete it',
+  });
+
+  const todo7 = new Todo({
+    title: 'Drag todos to rearrange them',
+  });
+
+  const todo8 = new Todo({
+    title: 'Drag lists to rearrange them',
   });
 
   const listOfLists = {};
-  addTodos(listOfLists, trashTodo, dishesTodo, laundryTodo, milkTodo, eggsTodo, breadTodo);
+  addTodos(listOfLists, todo1, todo2, todo3, todo4, todo5, todo6, todo7, todo8);
 
   return {
     listOfLists,
-    todos: [trashTodo, dishesTodo, laundryTodo, milkTodo, eggsTodo, breadTodo],
+    todos: [todo1, todo2, todo3, todo4, todo5, todo6, todo7, todo8],
   };
 }
