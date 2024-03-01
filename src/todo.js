@@ -7,7 +7,7 @@ class Todo {
   constructor({
     title,
     dueDate = new Date(),
-    list = 'Inbox',
+    list,
     description,
     completed = false,
     id,
