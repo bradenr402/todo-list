@@ -69,7 +69,7 @@ editListForm.addEventListener('submit', (event) => {
   const deleteBtn = document.getElementById(`delete-${prevTitle}`);
   deleteBtn.id = `delete-${editedTitle}`;
 
-  const listHeading = document.getElementById(`list-${prevTitle}`);
+  const listHeading = document.getElementById(`list-${prevTitle.split(' ').join('_')}`);
   listHeading.textContent = editedTitle;
   listHeading.id = `list-${editedTitle}`;
 
@@ -79,7 +79,7 @@ editListForm.addEventListener('submit', (event) => {
   listArticle.classList.remove(prevTitle.split(' ').join('_'));
   listArticle.classList.add(editedTitle.split(' ').join('_'));
 
-  const listUl = document.querySelector(`ul.${prevTitle}`);
+  const listUl = document.querySelector(`ul.${prevTitle.split(' ').join('_')}`);
   listUl.classList.remove(prevTitle.split(' ').join('_'));
   listUl.classList.add(editedTitle.split(' ').join('_'));
 

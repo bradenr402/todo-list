@@ -35,6 +35,7 @@ export default function createDefaultTodos() {
 
   const todo6 = new Todo({
     title: 'Click the trash icon on a list to delete it',
+    description: 'Note: you cannot delete a list if it is the only list remaining',
     list: 'Getting Started',
   });
 
