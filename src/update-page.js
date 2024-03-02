@@ -5,6 +5,7 @@ import removeTimeZone from './remove-timezone';
 import updateListeners from './update-listeners';
 import updateStoredList from './update-stored-list';
 import { tabChange } from './tabs';
+import { sortableInstances } from './index';
 
 function updatePage(newTodo) {
   const sideLinks = Array.from(document.querySelectorAll('.side-links button'));
@@ -61,10 +62,15 @@ function addNewList(list, allTodos) {
   article.appendChild(h2);
 
   const ul = document.createElement('ul');
-  Sortable.create(ul, {
+  sortableInstances[`${list}Sortable`] = Sortable.create(ul, {
     animation: 150,
     ghostClass: 'dragging',
     swapThreshold: 0.2,
+    onSort: function () {
+      const newOrder = sortableInstances[`${list}Sortable`].toArray();
+      const jsonOrder = JSON.stringify(newOrder);
+      localStorage.setItem(`${list}SortableOrder`, jsonOrder);
+    },
   });
 
   for (const todo of allTodos) {
@@ -73,8 +79,6 @@ function addNewList(list, allTodos) {
 
   article.appendChild(ul);
   content.appendChild(article);
-
-  tabChange(list)
 }
 
 function addNewTab(list) {

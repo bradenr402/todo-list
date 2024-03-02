@@ -1,6 +1,6 @@
 import { Todo, addTodos, getTodoById } from './todo';
 import { updateFormSelectOptions, updatePage } from './update-page';
-import listOfLists from './index';
+import { listOfLists } from './index';
 import { tabChange } from './tabs';
 
 const newDialog = document.querySelector('.modal.new-todo');

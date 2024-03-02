@@ -9,13 +9,20 @@ function tabChange(newTabId) {
     article.classList.add('hidden');
   });
 
-  const newTab = document.getElementById(`${newTabId}`);
+  let newTab = document.getElementById(`${newTabId}`);
+  if (!newTab) {
+    const allTabs = Array.from(document.querySelectorAll('.tab'));
+    newTab = allTabs[0];
+    newTabId = newTab.id;
+  }
   newTab.classList.add('selected');
 
   const newTabArticle = document.querySelector(
     `article.${newTabId.split(' ').join('_')}`
   );
   newTabArticle.classList.remove('hidden');
+
+  localStorage.setItem('lastTab', newTabId);
 }
 
 function updateTabEventListeners() {

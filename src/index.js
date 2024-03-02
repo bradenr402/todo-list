@@ -1,13 +1,11 @@
 import './style.css';
 import './modals';
 import './forms';
-import './tab-sort';
 import './tutorial';
 import { Todo } from './todo';
 import createDefaultTodos from './create-default-todos';
 import { setupPage } from './setup-page';
 import storageAvailable from './storage-available';
-import updateListeners from './update-listeners';
 
 let listOfLists = {},
   initialTodos = [];
@@ -16,9 +14,9 @@ let listOfLists = {},
 if (storageAvailable('localStorage') && localStorage.getItem('listOfLists')) {
   let storedList = JSON.parse(localStorage.getItem('listOfLists'));
 
-  for (const key in storedList) {
-    const storedTodos = storedList[key];
-    const todos = (listOfLists[key] = []);
+  for (const list in storedList) {
+    const storedTodos = storedList[list];
+    const todos = (listOfLists[list] = []);
 
     for (let i = 0; i < storedTodos.length; i++) {
       todos[i] = new Todo({
@@ -40,6 +38,6 @@ if (storageAvailable('localStorage') && localStorage.getItem('listOfLists')) {
   localStorage.setItem('listOfLists', JSON.stringify(listOfLists));
 }
 
-export default listOfLists;
+const sortableInstances = {};
+export {listOfLists, sortableInstances};
 setupPage(initialTodos);
-updateListeners();

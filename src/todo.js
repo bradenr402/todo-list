@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-import listOfLists from './index';
+import { listOfLists } from './index';
 
 class Todo {
   static globalId = 0;
@@ -58,8 +58,8 @@ function addTodos(list, ...todos) {
 }
 
 function getTodoById(id) {
-  for (const key in listOfLists) {
-    for (const todo of listOfLists[key]) {
+  for (const list in listOfLists) {
+    for (const todo of listOfLists[list]) {
       if (todo.id === +id) return todo;
     }
   }
@@ -67,8 +67,8 @@ function getTodoById(id) {
 }
 
 function deleteTodo(todoToDelete) {
-  for (const key in listOfLists) {
-    const todos = listOfLists[key];
+  for (const list in listOfLists) {
+    const todos = listOfLists[list];
     for (let i = 0; i < todos.length; i++) {
       if (todos[i].id === todoToDelete.id) {
         todos.splice(i, 1);
@@ -80,8 +80,8 @@ function deleteTodo(todoToDelete) {
 }
 
 function deleteList(listToDelete) {
-  for (const key in listOfLists) {
-    if (key === listToDelete) {
+  for (const list in listOfLists) {
+    if (list === listToDelete) {
       delete listOfLists[listToDelete];
     }
   }
